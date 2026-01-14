@@ -13,13 +13,21 @@ import { Button } from "@/components/ui/button";
 import {
   useCreateFile,
   useCreateFolder,
+  useFolderContents,
 } from "@/features/projects/hooks/use-files";
 import { CreateInput } from "@/features/projects/components/file-explorer/create-input";
+import { LoadingRow } from "@/features/projects/components/file-explorer/loading-row";
+import { Tree } from "@/features/projects/components/file-explorer/tree";
 
 export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [collapseKey, setCollapseKey] = useState(0);
   const [creating, setCreating] = useState<"file" | "folder" | null>(null);
+  const project = useProject(projectId);
+  const rootFiles = useFolderContents({
+    projectId,
+    enabled: isOpen,
+  });
   const createFile = useCreateFile();
   const createFolder = useCreateFolder();
   const handleCreate = (name: string) => {
@@ -35,7 +43,7 @@ export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
       createFolder({ projectId, name, parentId: undefined });
     }
   };
-  const project = useProject(projectId);
+
   return (
     <div className="h-full bg-sidebar">
       <ScrollArea>
@@ -97,6 +105,7 @@ export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
         </div>
         {isOpen && (
           <>
+            {rootFiles === undefined && <LoadingRow level={0} />}
             {creating && (
               <CreateInput
                 type={creating}
@@ -105,6 +114,14 @@ export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
                 onCancel={() => setCreating(null)}
               />
             )}
+            {rootFiles?.map((item) => (
+              <Tree
+                key={`${item._id}-${collapseKey}`}
+                item={item}
+                level={0}
+                projectId={projectId}
+              />
+            ))}
           </>
         )}
       </ScrollArea>
