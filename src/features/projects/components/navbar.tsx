@@ -117,7 +117,7 @@ export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
               <CloudCheckIcon className="size-4 text-muted-foreground" />
             </TooltipTrigger>
             <TooltipContent>
-              Saved{" "}
+              Saved
               {project?.updatedAt
                 ? formatDistanceToNow(project.updatedAt, { addSuffix: true })
                 : "Loading..."}
