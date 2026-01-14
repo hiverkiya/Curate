@@ -1,4 +1,18 @@
 "use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import { CloudCheckIcon, LoaderIcon } from "lucide-react";
+import { UserButton } from "@clerk/nextjs";
+import { Poppins } from "next/font/google";
+import { formatDistanceToNow } from "date-fns";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,25 +21,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Id } from "../../../../convex/_generated/dataModel";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Poppins } from "next/font/google";
-import { UserButton } from "@clerk/nextjs";
-import {
-  TooltipTrigger,
-  Tooltip,
-  TooltipContent,
-} from "@/components/ui/tooltip";
-import {
-  useProject,
-  useRenameProject,
-} from "@/features/projects/hooks/use-projects";
-import { useState } from "react";
-import { CloudCheckIcon, LoaderIcon } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
+
+import { Id } from "../../../../convex/_generated/dataModel";
+import { useProject, useRenameProject } from "../hooks/use-projects";
+
 const font = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -34,18 +35,23 @@ const font = Poppins({
 export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
   const project = useProject(projectId);
   const renameProject = useRenameProject(projectId);
+
   const [isRenaming, setIsRenaming] = useState(false);
   const [name, setName] = useState("");
+
   const handleStartRename = () => {
     if (!project) return;
     setName(project.name);
     setIsRenaming(true);
   };
+
   const handleSubmit = () => {
     if (!project) return;
     setIsRenaming(false);
+
     const trimmedName = name.trim();
     if (!trimmedName || trimmedName === project.name) return;
+
     renameProject({ id: projectId, name: trimmedName });
   };
 
@@ -64,16 +70,11 @@ export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
           <BreadcrumbList className="gap-0!">
             <BreadcrumbItem>
               <BreadcrumbLink className="flex items-center gap-1.5" asChild>
-                <Button className="w-fit! p-1.5! h-7!" variant="ghost" asChild>
+                <Button variant="ghost" className="w-fit! p-1.5! h-7!" asChild>
                   <Link href="/">
-                    <Image
-                      src="/logo.svg"
-                      alt="curate-logo"
-                      width={20}
-                      height={20}
-                    />
+                    <Image src="/logo.svg" alt="Logo" width={20} height={20} />
                     <span className={cn("text-sm font-medium", font.className)}>
-                      Curate
+                      Polaris
                     </span>
                   </Link>
                 </Button>
@@ -124,7 +125,7 @@ export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
           </Tooltip>
         )}
       </div>
-      <div className="flex items-center gap-2 ">
+      <div className="flex items-center gap-2">
         <UserButton />
       </div>
     </nav>

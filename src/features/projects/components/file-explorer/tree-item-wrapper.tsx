@@ -1,14 +1,16 @@
 import { cn } from "@/lib/utils";
 import {
   ContextMenu,
-  ContextMenuContent,
   ContextMenuItem,
-  ContextMenuSeparator,
-  ContextMenuShortcut,
+  ContextMenuContent,
   ContextMenuTrigger,
+  ContextMenuShortcut,
+  ContextMenuSeparator,
 } from "@/components/ui/context-menu";
-import { getItemPadding } from "@/features/projects/components/file-explorer/constants";
+
+import { getItemPadding } from "./constants";
 import { Doc } from "../../../../../convex/_generated/dataModel";
+
 export const TreeItemWrapper = ({
   item,
   children,
@@ -49,7 +51,9 @@ export const TreeItemWrapper = ({
             isActive && "bg-accent/30",
           )}
           style={{ paddingLeft: getItemPadding(level, item.type === "file") }}
-        ></button>
+        >
+          {children}
+        </button>
       </ContextMenuTrigger>
       <ContextMenuContent
         onCloseAutoFocus={(e) => e.preventDefault()}
@@ -60,7 +64,7 @@ export const TreeItemWrapper = ({
             <ContextMenuItem onClick={onCreateFile} className="text-sm">
               New File...
             </ContextMenuItem>
-            <ContextMenuItem className="text-sm" onClick={onCreateFolder}>
+            <ContextMenuItem onClick={onCreateFolder} className="text-sm">
               New Folder...
             </ContextMenuItem>
             <ContextMenuSeparator />
@@ -72,7 +76,7 @@ export const TreeItemWrapper = ({
         </ContextMenuItem>
         <ContextMenuItem onClick={onDelete} className="text-sm">
           Delete Permanently
-          <ContextMenuShortcut>Delete</ContextMenuShortcut>
+          <ContextMenuShortcut>⌘Backspace</ContextMenuShortcut>
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>

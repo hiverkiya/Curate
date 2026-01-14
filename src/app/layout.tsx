@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono } from "next/font/google";
-import "./globals.css";
+import { IBM_Plex_Mono, Inter } from "next/font/google";
+
 import { Providers } from "@/components/providers";
+
+import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -21,9 +23,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${plexMono.variable} antialiased`}>

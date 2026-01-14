@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { ChevronRightIcon } from "lucide-react";
 import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
-import { useState } from "react";
-import { getItemPadding } from "@/features/projects/components/file-explorer/constants";
+import { getItemPadding } from "./constants";
 import { cn } from "@/lib/utils";
+
 export const RenameInput = ({
   type,
   defaultValue,
@@ -12,21 +13,19 @@ export const RenameInput = ({
   onCancel,
 }: {
   type: "file" | "folder";
-  level: number;
   defaultValue: string;
   isOpen?: boolean;
+  level: number;
   onSubmit: (name: string) => void;
   onCancel: () => void;
 }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(defaultValue);
+
   const handleSubmit = () => {
-    const trimmedValue = value.trim();
-    if (trimmedValue) {
-      onSubmit(trimmedValue);
-    } else {
-      onCancel();
-    }
+    const trimmedValue = value.trim() || defaultValue;
+    onSubmit(trimmedValue);
   };
+
   return (
     <div
       className="w-full flex items-center gap-1 h-5.5 bg-accent/30"
@@ -45,7 +44,7 @@ export const RenameInput = ({
           <FileIcon fileName={value} autoAssign className="size-4" />
         )}
         {type === "folder" && (
-          <FolderIcon folderName={value} className="size-4" />
+          <FolderIcon className="size-4" folderName={value} />
         )}
       </div>
       <input
@@ -60,22 +59,22 @@ export const RenameInput = ({
             handleSubmit();
           }
           if (e.key === "Escape") {
-            onCancel;
+            onCancel();
           }
         }}
-        onFocus={(e)=>{
-          if(type==="folder"){
-            e.currentTarget.select()
-        } else {
-            const value=e.currentTarget.value;
-            const lastDotIndex=value.lastIndexOf(".")
-            if(lastDotIndex>0){
-              e.currentTarget.setSelectionRange(0,lastDotIndex);
-            }else {
+        onFocus={(e) => {
+          if (type === "folder") {
+            e.currentTarget.select();
+          } else {
+            const value = e.currentTarget.value;
+            const lastDotIndex = value.lastIndexOf(".");
+            if (lastDotIndex > 0) {
+              e.currentTarget.setSelectionRange(0, lastDotIndex);
+            } else {
               e.currentTarget.select();
             }
           }
-        }
+        }}
       />
     </div>
   );

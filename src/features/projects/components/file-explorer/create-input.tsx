@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { ChevronRightIcon } from "lucide-react";
 import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
-import { useState } from "react";
-import { getItemPadding } from "@/features/projects/components/file-explorer/constants";
+import { getItemPadding } from "./constants";
+
 export const CreateInput = ({
   type,
   level,
@@ -14,6 +15,7 @@ export const CreateInput = ({
   onCancel: () => void;
 }) => {
   const [value, setValue] = useState("");
+
   const handleSubmit = () => {
     const trimmedValue = value.trim();
     if (trimmedValue) {
@@ -22,6 +24,7 @@ export const CreateInput = ({
       onCancel();
     }
   };
+
   return (
     <div
       className="w-full flex items-center gap-1 h-5.5 bg-accent/30"
@@ -35,7 +38,7 @@ export const CreateInput = ({
           <FileIcon fileName={value} autoAssign className="size-4" />
         )}
         {type === "folder" && (
-          <FolderIcon folderName={value} className="size-4" />
+          <FolderIcon className="size-4" folderName={value} />
         )}
       </div>
       <input
@@ -50,7 +53,7 @@ export const CreateInput = ({
             handleSubmit();
           }
           if (e.key === "Escape") {
-            onCancel;
+            onCancel();
           }
         }}
       />

@@ -1,19 +1,24 @@
+import { useState } from "react";
+
 import { ChevronRightIcon } from "lucide-react";
+import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
+
+import { cn } from "@/lib/utils";
+
 import {
   useCreateFile,
-  useFolderContents,
   useCreateFolder,
+  useFolderContents,
   useRenameFile,
   useDeleteFile,
 } from "@/features/projects/hooks/use-files";
-import { cn } from "@/lib/utils";
-import { getItemPadding } from "@/features/projects/components/file-explorer/constants";
-import { LoadingRow } from "@/features/projects/components/file-explorer/loading-row";
-import { CreateInput } from "@/features/projects/components/file-explorer/create-input";
+
+import { getItemPadding } from "./constants";
+import { LoadingRow } from "./loading-row";
+import { CreateInput } from "./create-input";
+import { RenameInput } from "./rename-input";
+import { TreeItemWrapper } from "./tree-item-wrapper";
 import { Doc, Id } from "../../../../../convex/_generated/dataModel";
-import { useState } from "react";
-import { TreeItemWrapper } from "@/features/projects/components/file-explorer/tree-item-wrapper";
-import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
 
 export const Tree = ({
   item,
@@ -27,28 +32,31 @@ export const Tree = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isRenaming, setIsRenaming] = useState(false);
   const [creating, setCreating] = useState<"file" | "folder" | null>(null);
+
   const renameFile = useRenameFile();
   const deleteFile = useDeleteFile();
   const createFile = useCreateFile();
   const createFolder = useCreateFolder();
+
   const folderContents = useFolderContents({
     projectId,
     parentId: item._id,
     enabled: item.type === "folder" && isOpen,
   });
-  const startCreating = (type: "file" | "folder") => {
-    setIsOpen(true);
-    setCreating(type);
-  };
+
   const handleRename = (newName: string) => {
     setIsRenaming(false);
+
     if (newName === item.name) {
       return;
     }
+
     renameFile({ id: item._id, newName });
   };
+
   const handleCreate = (name: string) => {
     setCreating(null);
+
     if (creating === "file") {
       createFile({
         projectId,
@@ -64,8 +72,27 @@ export const Tree = ({
       });
     }
   };
+
+  const startCreating = (type: "file" | "folder") => {
+    setIsOpen(true);
+    setCreating(type);
+  };
+
   if (item.type === "file") {
     const fileName = item.name;
+
+    if (isRenaming) {
+      return (
+        <RenameInput
+          type="file"
+          defaultValue={fileName}
+          level={level}
+          onSubmit={handleRename}
+          onCancel={() => setIsRenaming(false)}
+        />
+      );
+    }
+
     return (
       <TreeItemWrapper
         item={item}
@@ -75,17 +102,18 @@ export const Tree = ({
         onDoubleClick={() => {}}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
-          //Close the tab logic
+          // TODO: Close tab
           deleteFile({ id: item._id });
         }}
       >
-        I am a file!
         <FileIcon fileName={fileName} autoAssign className="size-4" />
         <span className="truncate text-sm">{fileName}</span>
       </TreeItemWrapper>
     );
   }
+
   const folderName = item.name;
+
   const folderRender = (
     <>
       <div className="flex items-center gap-0.5">
@@ -100,6 +128,7 @@ export const Tree = ({
       <span className="truncate text-sm">{folderName}</span>
     </>
   );
+
   if (creating) {
     return (
       <>
@@ -132,6 +161,35 @@ export const Tree = ({
       </>
     );
   }
+
+  if (isRenaming) {
+    return (
+      <>
+        <RenameInput
+          type="folder"
+          defaultValue={folderName}
+          isOpen={isOpen}
+          level={level}
+          onSubmit={handleRename}
+          onCancel={() => setIsRenaming(false)}
+        />
+        {isOpen && (
+          <>
+            {folderContents === undefined && <LoadingRow level={level + 1} />}
+            {folderContents?.map((subItem) => (
+              <Tree
+                key={subItem._id}
+                item={subItem}
+                level={level + 1}
+                projectId={projectId}
+              />
+            ))}
+          </>
+        )}
+      </>
+    );
+  }
+
   return (
     <>
       <TreeItemWrapper
@@ -140,7 +198,7 @@ export const Tree = ({
         onClick={() => setIsOpen((value) => !value)}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
-          //Close the tab logic
+          // TODO: Close tab
           deleteFile({ id: item._id });
         }}
         onCreateFile={() => startCreating("file")}

@@ -1,14 +1,19 @@
 "use client";
-import { Id } from "../../../../convex/_generated/dataModel";
-import { cn } from "@/lib/utils";
+
 import { useState } from "react";
 import { Allotment } from "allotment";
 import { FaGithub } from "react-icons/fa";
-import { FileExplorer } from "@/features/projects/components/file-explorer";
+
+import { cn } from "@/lib/utils";
+
+import { FileExplorer } from "./file-explorer";
+import { Id } from "../../../../convex/_generated/dataModel";
+
 const MIN_SIDEBAR_WIDTH = 200;
 const MAX_SIDEBAR_WIDTH = 800;
 const DEFAULT_SIDEBAR_WIDTH = 350;
 const DEFAULT_MAIN_SIZE = 1000;
+
 const Tab = ({
   label,
   isActive,
@@ -30,6 +35,7 @@ const Tab = ({
     </div>
   );
 };
+
 export const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
   const [activeView, setActiveView] = useState<"editor" | "preview">("editor");
 
