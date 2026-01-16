@@ -119,8 +119,8 @@ export const ProjectsList = ({
               className="flex items-center gap-2 text-muted-foreground text-xs hover:text-foreground transition-colors"
             >
               <span>View all</span>
-              <Kbd className="bg-accent border">
-                ⌘K
+              <Kbd className="bg-accent border uppercase">
+                CTRL+K
               </Kbd>
             </button>
           </div>

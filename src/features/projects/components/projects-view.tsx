@@ -1,10 +1,9 @@
 "use client";
 
 import { Poppins } from "next/font/google";
-import { SparkleIcon } from "lucide-react";
+import { SquareTerminalIcon} from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import {
-  adjectives,
   animals,
   colors,
   uniqueNamesGenerator,
@@ -55,12 +54,12 @@ export const ProjectsView = () => {
           <div className="flex justify-between gap-4 w-full items-center">
 
             <div className="flex items-center gap-2 w-full group/logo">
-              <img src="/logo.svg" alt="Polaris" className="size-[32px] md:size-[46px]" />
+              <img src="/logo.svg" alt="Curate" className="size-[32px] md:size-[46px]" />
               <h1 className={cn(
                 "text-4xl md:text-5xl font-semibold",
                 font.className,
               )}>
-                Polaris
+                Curate
               </h1>
             </div>
 
@@ -73,12 +72,11 @@ export const ProjectsView = () => {
                 onClick={() => {
                   const projectName = uniqueNamesGenerator({
                     dictionaries: [
-                      adjectives,
-                      animals,
                       colors,
+                      animals,
                     ],
                     separator: "-",
-                    length: 3,
+                    length: 2,
                   });
 
                   createProject({
@@ -88,13 +86,13 @@ export const ProjectsView = () => {
                 className="h-full items-start justify-start p-4 bg-background border flex flex-col gap-6 rounded-none"
               >
                 <div className="flex items-center justify-between w-full">
-                  <SparkleIcon className="size-4" />
-                  <Kbd className="bg-accent border">
-                    ⌘J
+                  <SquareTerminalIcon className="size-4" />
+                  <Kbd className="bg-accent border uppercase">
+                    CTRL+J
                   </Kbd>
                 </div>
                 <div>
-                  <span className="text-sm">
+                  <span className="text-sm ">
                     New
                   </span>
                 </div>
@@ -106,8 +104,8 @@ export const ProjectsView = () => {
               >
                 <div className="flex items-center justify-between w-full">
                   <FaGithub className="size-4" />
-                  <Kbd className="bg-accent border">
-                    ⌘I
+                  <Kbd className="bg-accent border uppercase">
+                    CTRL+I
                   </Kbd>
                 </div>
                 <div>
