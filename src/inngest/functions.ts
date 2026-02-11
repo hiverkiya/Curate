@@ -11,7 +11,11 @@ export const demoGenerate = inngest.createFunction(
   async ({ event, step }) => {
     const { prompt } = event.data as { prompt: string; };
 
+<<<<<<< HEAD
     const urls = await step.run("extract-urls", async () => {
+=======
+    const urls = await step.run("exctract-urls", async () => {
+>>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
       return prompt.match(URL_REGEX) ?? [];
     }) as string[];
 

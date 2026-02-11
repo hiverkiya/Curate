@@ -5,6 +5,7 @@ import { Allotment } from "allotment";
 import { FaGithub } from "react-icons/fa";
 
 import { cn } from "@/lib/utils";
+import { EditorView } from "@/features/editor/components/editor-view";
 
 import { FileExplorer } from "./file-explorer";
 import { Id } from "../../../../convex/_generated/dataModel";
@@ -78,7 +79,11 @@ export const ProjectIdView = ({
               <FileExplorer projectId={projectId} />
             </Allotment.Pane>
             <Allotment.Pane>
+<<<<<<< HEAD
               <p>Editor view</p>
+=======
+              <EditorView projectId={projectId} />
+>>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
             </Allotment.Pane>
           </Allotment>
         </div>

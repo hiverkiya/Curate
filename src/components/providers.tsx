@@ -1,10 +1,18 @@
 "use client";
 
+<<<<<<< HEAD
 import {
   Authenticated,
   Unauthenticated,
   ConvexReactClient,
   AuthLoading,
+=======
+import { 
+  Authenticated, 
+  Unauthenticated,
+  ConvexReactClient,
+  AuthLoading, 
+>>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
 } from "convex/react";
 import { ClerkProvider, useAuth } from "@clerk/nextjs";
 import { ConvexProviderWithClerk } from "convex/react-clerk";

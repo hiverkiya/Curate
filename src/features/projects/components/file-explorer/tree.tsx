@@ -12,6 +12,10 @@ import {
   useRenameFile,
   useDeleteFile,
 } from "@/features/projects/hooks/use-files";
+<<<<<<< HEAD
+=======
+import { useEditor } from "@/features/editor/hooks/use-editor";
+>>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
 
 import { getItemPadding } from "./constants";
 import { LoadingRow } from "./loading-row";
@@ -38,6 +42,11 @@ export const Tree = ({
   const createFile = useCreateFile();
   const createFolder = useCreateFolder();
 
+<<<<<<< HEAD
+=======
+  const { openFile, closeTab, activeTabId } = useEditor(projectId);
+
+>>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
   const folderContents = useFolderContents({
     projectId,
     parentId: item._id,
@@ -80,6 +89,10 @@ export const Tree = ({
 
   if (item.type === "file") {
     const fileName = item.name;
+<<<<<<< HEAD
+=======
+    const isActive = activeTabId === item._id;
+>>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
 
     if (isRenaming) {
       return (
@@ -97,12 +110,21 @@ export const Tree = ({
       <TreeItemWrapper
         item={item}
         level={level}
+<<<<<<< HEAD
         isActive={false}
         onClick={() => {}}
         onDoubleClick={() => {}}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
           // TODO: Close tab
+=======
+        isActive={isActive}
+        onClick={() => openFile(item._id, { pinned: false })}
+        onDoubleClick={() => openFile(item._id, { pinned: true })}
+        onRename={() => setIsRenaming(true)}
+        onDelete={() => {
+          closeTab(item._id);
+>>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
           deleteFile({ id: item._id })
         }}
       >
@@ -198,7 +220,10 @@ export const Tree = ({
         onClick={() => setIsOpen((value) => !value)}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
+<<<<<<< HEAD
           // TODO: Close tab
+=======
+>>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
           deleteFile({ id: item._id })
         }}
         onCreateFile={() => startCreating("file")}

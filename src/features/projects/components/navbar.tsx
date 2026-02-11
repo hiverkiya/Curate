@@ -71,8 +71,23 @@ export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
               <BreadcrumbLink className="flex items-center gap-1.5" asChild>
                 <Button variant="ghost" className="w-fit! p-1.5! h-7!" asChild>
                   <Link href="/">
+<<<<<<< HEAD
                     <Image src="/logo.svg" alt="Logo" width={20} height={20} />
                     <span className={cn("text-sm font-medium", font.className)}>
+=======
+                    <Image
+                      src="/logo.svg"
+                      alt="Logo"
+                      width={20}
+                      height={20}
+                    />
+                    <span
+                      className={cn(
+                        "text-sm font-medium",
+                        font.className,
+                      )}
+                    >
+>>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
                       Curate
                     </span>
                   </Link>

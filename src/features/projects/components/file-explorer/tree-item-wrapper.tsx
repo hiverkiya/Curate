@@ -91,7 +91,11 @@ export const TreeItemWrapper = ({
         >
           Delete Permanently
           <ContextMenuShortcut>
+<<<<<<< HEAD
             Delete
+=======
+            ⌘Backspace
+>>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
           </ContextMenuShortcut>
         </ContextMenuItem>
       </ContextMenuContent>
