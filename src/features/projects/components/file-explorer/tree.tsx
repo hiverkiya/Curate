@@ -12,10 +12,7 @@ import {
   useRenameFile,
   useDeleteFile,
 } from "@/features/projects/hooks/use-files";
-<<<<<<< HEAD
-=======
 import { useEditor } from "@/features/editor/hooks/use-editor";
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
 
 import { getItemPadding } from "./constants";
 import { LoadingRow } from "./loading-row";
@@ -42,11 +39,8 @@ export const Tree = ({
   const createFile = useCreateFile();
   const createFolder = useCreateFolder();
 
-<<<<<<< HEAD
-=======
   const { openFile, closeTab, activeTabId } = useEditor(projectId);
 
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
   const folderContents = useFolderContents({
     projectId,
     parentId: item._id,
@@ -82,17 +76,14 @@ export const Tree = ({
     }
   };
 
-  const startCreating =(type: "file" | "folder") => {
+  const startCreating = (type: "file" | "folder") => {
     setIsOpen(true);
     setCreating(type);
   };
 
   if (item.type === "file") {
     const fileName = item.name;
-<<<<<<< HEAD
-=======
     const isActive = activeTabId === item._id;
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
 
     if (isRenaming) {
       return (
@@ -110,28 +101,18 @@ export const Tree = ({
       <TreeItemWrapper
         item={item}
         level={level}
-<<<<<<< HEAD
-        isActive={false}
-        onClick={() => {}}
-        onDoubleClick={() => {}}
-        onRename={() => setIsRenaming(true)}
-        onDelete={() => {
-          // TODO: Close tab
-=======
         isActive={isActive}
         onClick={() => openFile(item._id, { pinned: false })}
         onDoubleClick={() => openFile(item._id, { pinned: true })}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
           closeTab(item._id);
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
-          deleteFile({ id: item._id })
-        }}
-      >
+          deleteFile({ id: item._id });
+        }}>
         <FileIcon fileName={fileName} autoAssign className="size-4" />
         <span className="truncate text-sm">{fileName}</span>
       </TreeItemWrapper>
-    )
+    );
   }
 
   const folderName = item.name;
@@ -142,14 +123,14 @@ export const Tree = ({
         <ChevronRightIcon
           className={cn(
             "size-4 shrink-0 text-muted-foreground",
-            isOpen && "rotate-90"
+            isOpen && "rotate-90",
           )}
         />
         <FolderIcon folderName={folderName} className="size-4" />
       </div>
       <span className="truncate text-sm">{folderName}</span>
     </>
-  )
+  );
 
   if (creating) {
     return (
@@ -157,8 +138,7 @@ export const Tree = ({
         <button
           onClick={() => setIsOpen((value) => !value)}
           className="group flex items-center gap-1 h-5.5 hover:bg-accent/30 w-full"
-          style={{ paddingLeft: getItemPadding(level, false) }}
-        >
+          style={{ paddingLeft: getItemPadding(level, false) }}>
           {folderRender}
         </button>
         {isOpen && (
@@ -181,7 +161,7 @@ export const Tree = ({
           </>
         )}
       </>
-    )
+    );
   }
 
   if (isRenaming) {
@@ -209,7 +189,7 @@ export const Tree = ({
           </>
         )}
       </>
-    )
+    );
   }
 
   return (
@@ -220,15 +200,10 @@ export const Tree = ({
         onClick={() => setIsOpen((value) => !value)}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
-<<<<<<< HEAD
-          // TODO: Close tab
-=======
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
-          deleteFile({ id: item._id })
+          deleteFile({ id: item._id });
         }}
         onCreateFile={() => startCreating("file")}
-        onCreateFolder={() => startCreating("folder")}
-      >
+        onCreateFolder={() => startCreating("folder")}>
         {folderRender}
       </TreeItemWrapper>
       {isOpen && (

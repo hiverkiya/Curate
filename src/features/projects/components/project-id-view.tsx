@@ -18,7 +18,7 @@ const DEFAULT_MAIN_SIZE = 1000;
 const Tab = ({
   label,
   isActive,
-  onClick
+  onClick,
 }: {
   label: string;
   isActive: boolean;
@@ -29,19 +29,14 @@ const Tab = ({
       onClick={onClick}
       className={cn(
         "flex items-center gap-2 h-full px-3 cursor-pointer text-muted-foreground border-r hover:bg-accent/30",
-        isActive && "bg-background text-foreground"
-      )}
-    >
+        isActive && "bg-background text-foreground",
+      )}>
       <span className="text-sm">{label}</span>
     </div>
   );
 };
 
-export const ProjectIdView = ({ 
-  projectId
-}: { 
-  projectId: Id<"projects">
-}) => {
+export const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
   const [activeView, setActiveView] = useState<"editor" | "preview">("editor");
 
   return (
@@ -65,32 +60,29 @@ export const ProjectIdView = ({
         </div>
       </nav>
       <div className="flex-1 relative">
-        <div className={cn(
-          "absolute inset-0",
-          activeView === "editor" ? "visible" : "invisible"
-        )}>
+        <div
+          className={cn(
+            "absolute inset-0",
+            activeView === "editor" ? "visible" : "invisible",
+          )}>
           <Allotment defaultSizes={[DEFAULT_SIDEBAR_WIDTH, DEFAULT_MAIN_SIZE]}>
             <Allotment.Pane
               snap
               minSize={MIN_SIDEBAR_WIDTH}
               maxSize={MAX_SIDEBAR_WIDTH}
-              preferredSize={DEFAULT_SIDEBAR_WIDTH}
-            >
+              preferredSize={DEFAULT_SIDEBAR_WIDTH}>
               <FileExplorer projectId={projectId} />
             </Allotment.Pane>
             <Allotment.Pane>
-<<<<<<< HEAD
-              <p>Editor view</p>
-=======
               <EditorView projectId={projectId} />
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
             </Allotment.Pane>
           </Allotment>
         </div>
-        <div className={cn(
-          "absolute inset-0",
-          activeView === "preview" ? "visible" : "invisible"
-        )}>
+        <div
+          className={cn(
+            "absolute inset-0",
+            activeView === "preview" ? "visible" : "invisible",
+          )}>
           <div>Preview</div>
         </div>
       </div>

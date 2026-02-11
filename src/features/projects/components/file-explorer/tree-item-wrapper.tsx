@@ -50,53 +50,31 @@ export const TreeItemWrapper = ({
             "group flex items-center gap-1 w-full h-5.5 hover:bg-accent/30 outline-none focus:ring-1 focus:ring-inset focus:ring-ring",
             isActive && "bg-accent/30",
           )}
-          style={{ paddingLeft: getItemPadding(level, item.type === "file") }}
-        >
+          style={{ paddingLeft: getItemPadding(level, item.type === "file") }}>
           {children}
         </button>
       </ContextMenuTrigger>
       <ContextMenuContent
         onCloseAutoFocus={(e) => e.preventDefault()}
-        className="w-64"
-      >
+        className="w-64">
         {item.type === "folder" && (
           <>
-            <ContextMenuItem 
-              onClick={onCreateFile}
-              className="text-sm"
-            >
+            <ContextMenuItem onClick={onCreateFile} className="text-sm">
               New File...
             </ContextMenuItem>
-            <ContextMenuItem 
-              onClick={onCreateFolder}
-              className="text-sm"
-            >
+            <ContextMenuItem onClick={onCreateFolder} className="text-sm">
               New Folder...
             </ContextMenuItem>
             <ContextMenuSeparator />
           </>
         )}
-         <ContextMenuItem 
-          onClick={onRename}
-          className="text-sm"
-        >
+        <ContextMenuItem onClick={onRename} className="text-sm">
           Rename...
-          <ContextMenuShortcut>
-            Enter
-          </ContextMenuShortcut>
+          <ContextMenuShortcut>Enter</ContextMenuShortcut>
         </ContextMenuItem>
-         <ContextMenuItem 
-          onClick={onDelete}
-          className="text-sm"
-        >
+        <ContextMenuItem onClick={onDelete} className="text-sm">
           Delete Permanently
-          <ContextMenuShortcut>
-<<<<<<< HEAD
-            Delete
-=======
-            ⌘Backspace
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
-          </ContextMenuShortcut>
+          <ContextMenuShortcut>⌘Backspace</ContextMenuShortcut>
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>

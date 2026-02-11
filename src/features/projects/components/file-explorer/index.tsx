@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from "react";
 import {
   ChevronRightIcon,
@@ -23,39 +22,9 @@ import { LoadingRow } from "./loading-row";
 import { Tree } from "./tree";
 
 export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [collapseKey, setCollapseKey] = useState(0);
-  const [creating, setCreating] = useState<"file" | "folder" | null>(null);
-=======
-import { useState } from "react"
-import { ChevronRightIcon, CopyMinusIcon, FilePlusCornerIcon, FolderPlusIcon } from "lucide-react"
-
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
-
-import { useProject } from "../../hooks/use-projects"
-import { Id } from "../../../../../convex/_generated/dataModel"
-import { 
-  useCreateFile,
-  useCreateFolder,
-  useFolderContents
-} from "../../hooks/use-files"
-import { CreateInput } from "./create-input"
-import { LoadingRow } from "./loading-row"
-import { Tree } from "./tree"
-
-export const FileExplorer = ({ 
-  projectId
-}: { 
-  projectId: Id<"projects">
-}) => {
   const [isOpen, setIsOpen] = useState(true);
   const [collapseKey, setCollapseKey] = useState(0);
-  const [creating, setCreating] = useState<"file" | "folder" | null>(
-    null
-  );
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
+  const [creating, setCreating] = useState<"file" | "folder" | null>(null);
 
   const project = useProject(projectId);
   const rootFiles = useFolderContents({
@@ -90,26 +59,17 @@ export const FileExplorer = ({
         <div
           role="button"
           onClick={() => setIsOpen((value) => !value)}
-          className="group/project cursor-pointer w-full text-left flex items-center gap-0.5 h-5.5 bg-accent font-bold"
-        >
+          className="group/project cursor-pointer w-full text-left flex items-center gap-0.5 h-5.5 bg-accent font-bold">
           <ChevronRightIcon
             className={cn(
               "size-4 shrink-0 text-muted-foreground",
-<<<<<<< HEAD
               isOpen && "rotate-90",
-=======
-              isOpen && "rotate-90"
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
             )}
           />
           <p className="text-xs uppercase line-clamp-1">
             {project?.name ?? "Loading..."}
           </p>
-<<<<<<< HEAD
-          <div className="opacity-60 group-hover/project:opacity-100 transition-none duration-0 flex items-center gap-0.5 ml-auto">
-=======
           <div className="opacity-0 group-hover/project:opacity-100 transition-none duration-0 flex items-center gap-0.5 ml-auto">
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
             <Button
               onClick={(e) => {
                 e.stopPropagation();
@@ -118,8 +78,7 @@ export const FileExplorer = ({
                 setCreating("file");
               }}
               variant="highlight"
-              size="icon-xs"
-            >
+              size="icon-xs">
               <FilePlusCornerIcon className="size-3.5" />
             </Button>
             <Button
@@ -130,8 +89,7 @@ export const FileExplorer = ({
                 setCreating("folder");
               }}
               variant="highlight"
-              size="icon-xs"
-            >
+              size="icon-xs">
               <FolderPlusIcon className="size-3.5" />
             </Button>
             <Button
@@ -141,8 +99,7 @@ export const FileExplorer = ({
                 setCollapseKey((prev) => prev + 1);
               }}
               variant="highlight"
-              size="icon-xs"
-            >
+              size="icon-xs">
               <CopyMinusIcon className="size-3.5" />
             </Button>
           </div>
@@ -170,10 +127,5 @@ export const FileExplorer = ({
         )}
       </ScrollArea>
     </div>
-<<<<<<< HEAD
   );
 };
-=======
-  )
-}
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2

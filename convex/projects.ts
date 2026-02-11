@@ -9,10 +9,6 @@ export const create = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await verifyAuth(ctx);
-<<<<<<< HEAD
-=======
-
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
     const projectId = await ctx.db.insert("projects", {
       name: args.name,
       ownerId: identity.subject,
@@ -53,7 +49,7 @@ export const get = query({
 
 export const getById = query({
   args: {
-    id: v.id("projects")
+    id: v.id("projects"),
   },
   handler: async (ctx, args) => {
     const identity = await verifyAuth(ctx);

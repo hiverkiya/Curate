@@ -119,11 +119,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-<<<<<<< HEAD
-    @apply bg-background text-foreground; /* TODO: add "select-none" later */
-=======
     @apply bg-background text-foreground select-none;
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
   }
 }
 
