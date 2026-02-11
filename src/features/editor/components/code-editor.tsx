@@ -15,11 +15,11 @@ interface Props {
   onChange: (value: string) => void;
 }
 
-export const CodeEditor = ({
-                             fileName,
-                             initialValue = "",
-                             onChange
-                           }: Props) => {
+export const CodeEditor = ({ 
+  fileName, 
+  initialValue = "",
+  onChange
+}: Props) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
 
@@ -54,9 +54,10 @@ export const CodeEditor = ({
     return () => {
       view.destroy();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- initialValue is only used for initial document
   }, [languageExtension]);
 
   return (
-      <div ref={editorRef} className="size-full pl-4 bg-background" />
+    <div ref={editorRef} className="size-full pl-4 bg-background" />
   );
 };

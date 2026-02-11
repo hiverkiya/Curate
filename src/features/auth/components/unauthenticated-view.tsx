@@ -1,14 +1,16 @@
 import { ShieldAlertIcon } from "lucide-react";
+
 import {
-  ItemContent,
   Item,
+  ItemActions,
+  ItemContent,
   ItemDescription,
   ItemMedia,
   ItemTitle,
-  ItemActions,
 } from "@/components/ui/item";
 import { SignInButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+
 export const UnauthenticatedView = () => {
   return (
     <div className="flex items-center justify-center h-screen bg-background">
@@ -26,7 +28,7 @@ export const UnauthenticatedView = () => {
           <ItemActions>
             <SignInButton>
               <Button variant="outline" size="sm">
-                Sign In
+                Sign in
               </Button>
             </SignInButton>
           </ItemActions>
