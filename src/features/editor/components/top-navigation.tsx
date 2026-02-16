@@ -1,4 +1,4 @@
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 import { useFile } from "@/features/projects/hooks/use-files";
 
@@ -19,13 +19,8 @@ const Tab = ({
   projectId: Id<"projects">;
 }) => {
   const file = useFile(fileId);
-  const {
-    activeTabId,
-    previewTabId,
-    setActiveTab,
-    openFile,
-    closeTab,
-  } = useEditor(projectId);
+  const { activeTabId, previewTabId, setActiveTab, openFile, closeTab } =
+    useEditor(projectId);
 
   const isActive = activeTabId === fileId;
   const isPreview = previewTabId === fileId;
@@ -39,7 +34,7 @@ const Tab = ({
         "flex items-center gap-2 h-8.75 pl-2 pr-1.5 cursor-pointer text-muted-foreground group border-y border-x border-transparent hover:bg-accent/30",
         isActive &&
           "bg-background text-foreground border-x-border border-b-background -mb-px drop-shadow",
-        isFirst && "border-l-transparent!"
+        isFirst && "border-l-transparent!",
       )}
     >
       {file === undefined ? (
@@ -47,10 +42,7 @@ const Tab = ({
       ) : (
         <FileIcon fileName={fileName} autoAssign className="size-4" />
       )}
-      <span className={cn(
-        "text-sm whitespace-nowrap",
-        isPreview && "italic"
-      )}>
+      <span className={cn("text-sm whitespace-nowrap", isPreview && "italic")}>
         {fileName}
       </span>
       <button
@@ -68,7 +60,7 @@ const Tab = ({
         }}
         className={cn(
           "p-0.5 rounded-sm hover:bg-white/10 opacity-0 group-hover:opacity-100",
-          isActive && "opacity-100"
+          isActive && "opacity-100",
         )}
       >
         <XIcon className="size-3.5" />
@@ -77,11 +69,7 @@ const Tab = ({
   );
 };
 
-export const TopNavigation = ({ 
-  projectId
-}: { 
-  projectId: Id<"projects">
-}) => {
+export const TopNavigation = ({ projectId }: { projectId: Id<"projects"> }) => {
   const { openTabs } = useEditor(projectId);
 
   return (

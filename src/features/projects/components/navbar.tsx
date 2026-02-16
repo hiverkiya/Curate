@@ -95,7 +95,8 @@ export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
               ) : (
                 <BreadcrumbPage
                   onClick={handleStartRename}
-                  className="text-sm cursor-pointer hover:text-primary font-medium max-w-40 truncate">
+                  className="text-sm cursor-pointer hover:text-primary font-medium max-w-40 truncate"
+                >
                   {project?.name ?? "Loading..."}
                 </BreadcrumbPage>
               )}

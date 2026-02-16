@@ -9,25 +9,18 @@ export const demoGenerate = inngest.createFunction(
   { id: "demo-generate" },
   { event: "demo/generate" },
   async ({ event, step }) => {
-    const { prompt } = event.data as { prompt: string; };
+    const { prompt } = event.data as { prompt: string };
 
-<<<<<<< HEAD
-    const urls = await step.run("extract-urls", async () => {
-=======
-    const urls = await step.run("exctract-urls", async () => {
->>>>>>> 4e0d0bf23a21334c90811c6b00320bd03931f1c2
+    const urls = (await step.run("exctract-urls", async () => {
       return prompt.match(URL_REGEX) ?? [];
-    }) as string[];
+    })) as string[];
 
     const scrapedContent = await step.run("scrape-urls", async () => {
       const results = await Promise.all(
         urls.map(async (url) => {
-          const result = await firecrawl.scrape(
-            url,
-            { formats: ["markdown"] },
-          );
+          const result = await firecrawl.scrape(url, { formats: ["markdown"] });
           return result.markdown ?? null;
-        })
+        }),
       );
       return results.filter(Boolean).join("\n\n");
     });
@@ -38,7 +31,7 @@ export const demoGenerate = inngest.createFunction(
 
     await step.run("generate-text", async () => {
       return await generateText({
-        model: anthropic('claude-3-haiku-20240307'),
+        model: anthropic("claude-3-haiku-20240307"),
         prompt: finalPrompt,
         experimental_telemetry: {
           isEnabled: true,
@@ -46,7 +39,7 @@ export const demoGenerate = inngest.createFunction(
           recordOutputs: true,
         },
       });
-    })
+    });
   },
 );
 
@@ -57,5 +50,5 @@ export const demoError = inngest.createFunction(
     await step.run("fail", async () => {
       throw new Error("Inngest error: Background job failed!");
     });
-  }
+  },
 );

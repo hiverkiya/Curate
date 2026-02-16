@@ -54,9 +54,7 @@ export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
             }}
           />
         )}
-        {isActiveFileBinary && (
-          <p>TODO: Implement binary preview</p>
-        )}
+        {isActiveFileBinary && <p>TODO: Implement binary preview</p>}
       </div>
     </div>
   );

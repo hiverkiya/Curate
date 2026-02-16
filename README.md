@@ -1,4 +1,3 @@
-```markdown
 # Curate — AI-Powered Web IDE (Summary)
 
 ## Overview
@@ -120,4 +119,3 @@ The project evolves through:
 ## Conclusion
 
 Curate represents a fully integrated AI-enhanced development platform that merges real-time infrastructure, conversational AI, intelligent code editing, and production-level observability into a cohesive cloud IDE architecture.
-```

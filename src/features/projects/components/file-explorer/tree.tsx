@@ -108,7 +108,8 @@ export const Tree = ({
         onDelete={() => {
           closeTab(item._id);
           deleteFile({ id: item._id });
-        }}>
+        }}
+      >
         <FileIcon fileName={fileName} autoAssign className="size-4" />
         <span className="truncate text-sm">{fileName}</span>
       </TreeItemWrapper>
@@ -138,7 +139,8 @@ export const Tree = ({
         <button
           onClick={() => setIsOpen((value) => !value)}
           className="group flex items-center gap-1 h-5.5 hover:bg-accent/30 w-full"
-          style={{ paddingLeft: getItemPadding(level, false) }}>
+          style={{ paddingLeft: getItemPadding(level, false) }}
+        >
           {folderRender}
         </button>
         {isOpen && (
@@ -203,7 +205,8 @@ export const Tree = ({
           deleteFile({ id: item._id });
         }}
         onCreateFile={() => startCreating("file")}
-        onCreateFolder={() => startCreating("folder")}>
+        onCreateFolder={() => startCreating("folder")}
+      >
         {folderRender}
       </TreeItemWrapper>
       {isOpen && (

@@ -9,7 +9,7 @@ import { python } from "@codemirror/lang-python";
 export const getLanguageExtension = (filename: string): Extension => {
   const ext = filename.split(".").pop()?.toLowerCase();
 
-  switch(ext) {
+  switch (ext) {
     case "js":
       return javascript();
     case "jsx":
