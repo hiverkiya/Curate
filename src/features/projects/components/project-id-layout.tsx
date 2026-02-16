@@ -25,10 +25,7 @@ export const ProjectIdLayout = ({
       <div className="flex-1 flex overflow-hidden">
         <Allotment
           className="flex-1"
-          defaultSizes={[
-            DEFAULT_CONVERSATION_SIDEBAR_WIDTH,
-            DEFAULT_MAIN_SIZE
-          ]}
+          defaultSizes={[DEFAULT_CONVERSATION_SIDEBAR_WIDTH, DEFAULT_MAIN_SIZE]}
         >
           <Allotment.Pane
             snap
@@ -38,9 +35,7 @@ export const ProjectIdLayout = ({
           >
             <div>Conversation Sidebar</div>
           </Allotment.Pane>
-          <Allotment.Pane>
-            {children}
-          </Allotment.Pane>
+          <Allotment.Pane>{children}</Allotment.Pane>
         </Allotment>
       </div>
     </div>

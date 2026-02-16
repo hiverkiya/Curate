@@ -13,7 +13,7 @@ export const useFilePath = (fileId: Id<"files"> | null) => {
 export const useUpdateFile = () => {
   return useMutation(api.files.updateFile);
 };
- 
+
 export const useCreateFile = () => {
   return useMutation(api.files.createFile);
   // TODO: Add optimistic mutation

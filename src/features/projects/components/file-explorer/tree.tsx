@@ -76,7 +76,7 @@ export const Tree = ({
     }
   };
 
-  const startCreating =(type: "file" | "folder") => {
+  const startCreating = (type: "file" | "folder") => {
     setIsOpen(true);
     setCreating(type);
   };
@@ -107,13 +107,13 @@ export const Tree = ({
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
           closeTab(item._id);
-          deleteFile({ id: item._id })
+          deleteFile({ id: item._id });
         }}
       >
         <FileIcon fileName={fileName} autoAssign className="size-4" />
         <span className="truncate text-sm">{fileName}</span>
       </TreeItemWrapper>
-    )
+    );
   }
 
   const folderName = item.name;
@@ -124,14 +124,14 @@ export const Tree = ({
         <ChevronRightIcon
           className={cn(
             "size-4 shrink-0 text-muted-foreground",
-            isOpen && "rotate-90"
+            isOpen && "rotate-90",
           )}
         />
         <FolderIcon folderName={folderName} className="size-4" />
       </div>
       <span className="truncate text-sm">{folderName}</span>
     </>
-  )
+  );
 
   if (creating) {
     return (
@@ -163,7 +163,7 @@ export const Tree = ({
           </>
         )}
       </>
-    )
+    );
   }
 
   if (isRenaming) {
@@ -191,7 +191,7 @@ export const Tree = ({
           </>
         )}
       </>
-    )
+    );
   }
 
   return (
@@ -202,7 +202,7 @@ export const Tree = ({
         onClick={() => setIsOpen((value) => !value)}
         onRename={() => setIsRenaming(true)}
         onDelete={() => {
-          deleteFile({ id: item._id })
+          deleteFile({ id: item._id });
         }}
         onCreateFile={() => startCreating("file")}
         onCreateFolder={() => startCreating("folder")}

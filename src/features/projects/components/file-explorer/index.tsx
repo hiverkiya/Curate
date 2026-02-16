@@ -1,31 +1,30 @@
-import { useState } from "react"
-import { ChevronRightIcon, CopyMinusIcon, FilePlusCornerIcon, FolderPlusIcon } from "lucide-react"
+import { useState } from "react";
+import {
+  ChevronRightIcon,
+  CopyMinusIcon,
+  FilePlusCornerIcon,
+  FolderPlusIcon,
+} from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
-import { useProject } from "../../hooks/use-projects"
-import { Id } from "../../../../../convex/_generated/dataModel"
-import { 
+import { useProject } from "../../hooks/use-projects";
+import { Id } from "../../../../../convex/_generated/dataModel";
+import {
   useCreateFile,
   useCreateFolder,
-  useFolderContents
-} from "../../hooks/use-files"
-import { CreateInput } from "./create-input"
-import { LoadingRow } from "./loading-row"
-import { Tree } from "./tree"
+  useFolderContents,
+} from "../../hooks/use-files";
+import { CreateInput } from "./create-input";
+import { LoadingRow } from "./loading-row";
+import { Tree } from "./tree";
 
-export const FileExplorer = ({ 
-  projectId
-}: { 
-  projectId: Id<"projects">
-}) => {
+export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [collapseKey, setCollapseKey] = useState(0);
-  const [creating, setCreating] = useState<"file" | "folder" | null>(
-    null
-  );
+  const [creating, setCreating] = useState<"file" | "folder" | null>(null);
 
   const project = useProject(projectId);
   const rootFiles = useFolderContents({
@@ -65,7 +64,7 @@ export const FileExplorer = ({
           <ChevronRightIcon
             className={cn(
               "size-4 shrink-0 text-muted-foreground",
-              isOpen && "rotate-90"
+              isOpen && "rotate-90",
             )}
           />
           <p className="text-xs uppercase line-clamp-1">
@@ -132,5 +131,5 @@ export const FileExplorer = ({
         )}
       </ScrollArea>
     </div>
-  )
-}
+  );
+};

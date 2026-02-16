@@ -10,12 +10,12 @@ export const RenameInput = ({
   isOpen,
   level,
   onSubmit,
-  onCancel
+  onCancel,
 }: {
-  type: "file" | "folder",
+  type: "file" | "folder";
   defaultValue: string;
   isOpen?: boolean;
-  level: number,
+  level: number;
   onSubmit: (name: string) => void;
   onCancel: () => void;
 }) => {
@@ -24,18 +24,21 @@ export const RenameInput = ({
   const handleSubmit = () => {
     const trimmedValue = value.trim() || defaultValue;
     onSubmit(trimmedValue);
-  }
+  };
 
   return (
-    <div className="w-full flex items-center gap-1 h-5.5 bg-accent/30"
+    <div
+      className="w-full flex items-center gap-1 h-5.5 bg-accent/30"
       style={{ paddingLeft: getItemPadding(level, type === "file") }}
     >
       <div className="flex items-center gap-0.5">
         {type === "folder" && (
-          <ChevronRightIcon className={cn(
-            "size-4 shrink-0 text-muted-foreground",
-            isOpen && "rotate-90",
-          )} />
+          <ChevronRightIcon
+            className={cn(
+              "size-4 shrink-0 text-muted-foreground",
+              isOpen && "rotate-90",
+            )}
+          />
         )}
         {type === "file" && (
           <FileIcon fileName={value} autoAssign className="size-4" />

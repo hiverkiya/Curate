@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="23f096dd-68a3-44eb-8e25-c3d8b86abd6e" name="Changes" comment="Codemirror 6 integrated with saved state" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;hiverkiya&quot;
+  }
+}</component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOQ0fsgM69I0D7&quot;,
+        &quot;number&quot;: 11
+      },
+      &quot;lastSeen&quot;: 1768563251190
+    }
+  ]
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/hiverkiya/Curate.git&quot;,
+    &quot;accountId&quot;: &quot;96bca0e8-50d2-4d67-be01-0477e9dd96d9&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="37sAqoltZWmmHmtk4iNSjOjl66Q" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "fixes",
+    "js.debugger.nextJs.config.created.client": "true",
+    "js.debugger.nextJs.config.created.server": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/hiver/Desktop/Github/Curate/public",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\hiver\\Desktop\\Github\\Curate\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "C:\\Users\\hiver\\Desktop\\Github\\Curate\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hiver\Desktop\Github\Curate\public" />
+      <recent name="C:\Users\hiver\Desktop\Github\Curate\src\features\projects\components\file-explorer" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hiver\Desktop\Github\Curate\src\features\editor\store" />
+      <recent name="C:\Users\hiver\Desktop\Github\Curate\src\features\editor\hooks" />
+      <recent name="C:\Users\hiver\Desktop\Github\Curate\public" />
+      <recent name="C:\Users\hiver\Desktop\Github\Curate\src\inngest" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.Next.js: server-side">
+    <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
+      <method v="2" />
+    </configuration>
+    <configuration name="Next.js: server-side" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-WS-251.29188.1" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="23f096dd-68a3-44eb-8e25-c3d8b86abd6e" name="Changes" comment="" />
+      <created>1767681599610</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1767681599610</updated>
+      <workItem from="1767681601592" duration="8375000" />
+      <workItem from="1767775132909" duration="2477000" />
+      <workItem from="1767793032494" duration="3754000" />
+      <workItem from="1767851746575" duration="9148000" />
+      <workItem from="1767939327134" duration="15375000" />
+      <workItem from="1768031174242" duration="3781000" />
+      <workItem from="1768040231074" duration="2807000" />
+      <workItem from="1768193737755" duration="1163000" />
+      <workItem from="1768284489481" duration="6198000" />
+      <workItem from="1768295972979" duration="3109000" />
+      <workItem from="1768368826715" duration="1544000" />
+      <workItem from="1768373786258" duration="10690000" />
+      <workItem from="1768390570326" duration="97000" />
+      <workItem from="1768391093678" duration="3456000" />
+      <workItem from="1768402431496" duration="31000" />
+      <workItem from="1768402501365" duration="3155000" />
+      <workItem from="1768454778144" duration="9785000" />
+      <workItem from="1768486970467" duration="2179000" />
+      <workItem from="1768542610613" duration="11495000" />
+      <workItem from="1768568986067" duration="600000" />
+      <workItem from="1769060098275" duration="1352000" />
+      <workItem from="1770621777883" duration="29000" />
+      <workItem from="1770622067032" duration="7566000" />
+      <workItem from="1770650805284" duration="2814000" />
+      <workItem from="1770711834293" duration="6958000" />
+      <workItem from="1770721070177" duration="3280000" />
+      <workItem from="1770726602530" duration="1033000" />
+      <workItem from="1770727856833" duration="58000" />
+      <workItem from="1770727951171" duration="1586000" />
+      <workItem from="1770730408442" duration="60000" />
+      <workItem from="1770736415308" duration="329000" />
+      <workItem from="1770792321213" duration="467000" />
+      <workItem from="1770822537272" duration="1479000" />
+    </task>
+    <task id="LOCAL-00001" summary="Setting up NextJs 16, Shadcn and Tailwind CSS. Also modified the globals.css for the default dark theme">
+      <option name="closed" value="true" />
+      <created>1767683364725</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1767683364725</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Setup the Clerk authentication">
+      <option name="closed" value="true" />
+      <created>1767684924200</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1767684924200</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Integrating Clerk with Convex providers">
+      <option name="closed" value="true" />
+      <created>1767691922638</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1767691922638</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Integrating Clerk with Convex providers">
+      <option name="closed" value="true" />
+      <created>1767776772004</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1767776772004</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Implementing AI SDKs and Inngest">
+      <option name="closed" value="true" />
+      <created>1767795512896</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1767795512896</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Setting up the Firecrawl AI for scraping">
+      <option name="closed" value="true" />
+      <created>1767853266129</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1767853266129</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Integrated Sentry for error tracking and logging">
+      <option name="closed" value="true" />
+      <created>1767855850535</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1767855850535</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Integrated Sentry for error tracking and logging">
+      <option name="closed" value="true" />
+      <created>1767855993903</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1767855993903</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Designing Home screen projects layout">
+      <option name="closed" value="true" />
+      <created>1767950030969</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1767950030969</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Designing Navbar and implementing it">
+      <option name="closed" value="true" />
+      <created>1767977105679</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1767977105679</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Designing Navbar and implementing it">
+      <option name="closed" value="true" />
+      <created>1768034979321</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1768034979321</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Designing the File Editor layout">
+      <option name="closed" value="true" />
+      <created>1768295167493</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1768295167493</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Designing the File Editor layout">
+      <option name="closed" value="true" />
+      <created>1768388368602</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1768388368602</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fixing bugs and rechecking all the code">
+      <option name="closed" value="true" />
+      <created>1768389389677</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1768389389677</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fixing bugs and rechecking all the code">
+      <option name="closed" value="true" />
+      <created>1768389554442</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1768389554442</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fixing bugs and rechecking all the code">
+      <option name="closed" value="true" />
+      <created>1768391125718</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1768391125718</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fixing bugs and rechecking all the code">
+      <option name="closed" value="true" />
+      <created>1768563084575</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1768563084575</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Codemirror 6 integrated with saved state">
+      <option name="closed" value="true" />
+      <created>1770726641135</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1770726641135</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Codemirror 6 integrated with saved state">
+      <option name="closed" value="true" />
+      <created>1770727260999</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1770727260999</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Codemirror 6 integrated with saved state">
+      <option name="closed" value="true" />
+      <created>1770823365710</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1770823365710</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Setting up NextJs 16, Shadcn and Tailwind CSS. Also modified the globals.css for the default dark theme" />
+    <MESSAGE value="Setup the Clerk authentication" />
+    <MESSAGE value="Integrating Clerk with Convex providers" />
+    <MESSAGE value="Implementing AI SDKs and Inngest" />
+    <MESSAGE value="Setting up the Firecrawl AI for scraping" />
+    <MESSAGE value="Integrated Sentry for error tracking and logging" />
+    <MESSAGE value="Designing Home screen projects layout" />
+    <MESSAGE value="Designing Navbar and implementing it" />
+    <MESSAGE value="Designing the File Editor layout" />
+    <MESSAGE value="Fixing bugs and rechecking all the code" />
+    <MESSAGE value="Codemirror 6 integrated with saved state" />
+    <option name="LAST_COMMIT_MESSAGE" value="Codemirror 6 integrated with saved state" />
+  </component>
+</project>

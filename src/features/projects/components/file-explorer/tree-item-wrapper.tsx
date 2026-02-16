@@ -61,38 +61,22 @@ export const TreeItemWrapper = ({
       >
         {item.type === "folder" && (
           <>
-            <ContextMenuItem 
-              onClick={onCreateFile}
-              className="text-sm"
-            >
+            <ContextMenuItem onClick={onCreateFile} className="text-sm">
               New File...
             </ContextMenuItem>
-            <ContextMenuItem 
-              onClick={onCreateFolder}
-              className="text-sm"
-            >
+            <ContextMenuItem onClick={onCreateFolder} className="text-sm">
               New Folder...
             </ContextMenuItem>
             <ContextMenuSeparator />
           </>
         )}
-         <ContextMenuItem 
-          onClick={onRename}
-          className="text-sm"
-        >
+        <ContextMenuItem onClick={onRename} className="text-sm">
           Rename...
-          <ContextMenuShortcut>
-            Enter
-          </ContextMenuShortcut>
+          <ContextMenuShortcut>Enter</ContextMenuShortcut>
         </ContextMenuItem>
-         <ContextMenuItem 
-          onClick={onDelete}
-          className="text-sm"
-        >
+        <ContextMenuItem onClick={onDelete} className="text-sm">
           Delete Permanently
-          <ContextMenuShortcut>
-            ⌘Backspace
-          </ContextMenuShortcut>
+          <ContextMenuShortcut>⌘Backspace</ContextMenuShortcut>
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>

@@ -2,7 +2,7 @@ import React from "react";
 import { FileIcon } from "@react-symbols/icons/utils";
 
 import { useFilePath } from "@/features/projects/hooks/use-files";
-import { useEditor } from "@/features/editor/hooks/use-editor"
+import { useEditor } from "@/features/editor/hooks/use-editor";
 
 import {
   Breadcrumb,
@@ -57,14 +57,12 @@ export const FileBreadcrumbs = ({
                       {item.name}
                     </BreadcrumbPage>
                   ) : (
-                    <BreadcrumbLink href="#">
-                      {item.name}
-                    </BreadcrumbLink>
+                    <BreadcrumbLink href="#">{item.name}</BreadcrumbLink>
                   )}
                 </BreadcrumbItem>
                 {!isLast && <BreadcrumbSeparator />}
               </React.Fragment>
-            )
+            );
           })}
         </BreadcrumbList>
       </Breadcrumb>

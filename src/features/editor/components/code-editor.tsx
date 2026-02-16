@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react"
+import { useEffect, useMemo, useRef } from "react";
 import { EditorView, keymap } from "@codemirror/view";
 import { oneDark } from "@codemirror/theme-one-dark";
 import { indentWithTab } from "@codemirror/commands";
@@ -15,17 +15,17 @@ interface Props {
   onChange: (value: string) => void;
 }
 
-export const CodeEditor = ({ 
-  fileName, 
+export const CodeEditor = ({
+  fileName,
   initialValue = "",
-  onChange
+  onChange,
 }: Props) => {
   const editorRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
 
   const languageExtension = useMemo(() => {
-    return getLanguageExtension(fileName)
-  }, [fileName])
+    return getLanguageExtension(fileName);
+  }, [fileName]);
 
   useEffect(() => {
     if (!editorRef.current) return;
@@ -45,7 +45,7 @@ export const CodeEditor = ({
           if (update.docChanged) {
             onChange(update.state.doc.toString());
           }
-        })
+        }),
       ],
     });
 
@@ -57,7 +57,5 @@ export const CodeEditor = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps -- initialValue is only used for initial document
   }, [languageExtension]);
 
-  return (
-    <div ref={editorRef} className="size-full pl-4 bg-background" />
-  );
+  return <div ref={editorRef} className="size-full pl-4 bg-background" />;
 };

@@ -13,4 +13,4 @@ export const customTheme = EditorView.theme({
     scrollbarWidth: "thin",
     scrollbarColor: "#3f3f46 transparent",
   },
-})
+});

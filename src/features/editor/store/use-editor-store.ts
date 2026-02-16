@@ -6,7 +6,7 @@ interface TabState {
   openTabs: Id<"files">[];
   activeTabId: Id<"files"> | null;
   previewTabId: Id<"files"> | null;
-};
+}
 
 const defaultTabState: TabState = {
   openTabs: [],
@@ -20,12 +20,12 @@ interface EditorStore {
   openFile: (
     projectId: Id<"projects">,
     fileId: Id<"files">,
-    options: { pinned: boolean }
+    options: { pinned: boolean },
   ) => void;
   closeTab: (projectId: Id<"projects">, fileId: Id<"files">) => void;
   closeAllTabs: (projectId: Id<"projects">) => void;
   setActiveTab: (projectId: Id<"projects">, fileId: Id<"files">) => void;
-};
+}
 
 export const useEditorStore = create<EditorStore>()((set, get) => ({
   tabs: new Map(),
@@ -43,8 +43,8 @@ export const useEditorStore = create<EditorStore>()((set, get) => ({
     // Case 1: Opening as preview - replace existing preview or add new
     if (!isOpen && !pinned) {
       const newTabs = previewTabId
-        ? openTabs.map((id) => (id === previewTabId) ? fileId : id)
-        : [...openTabs, fileId]
+        ? openTabs.map((id) => (id === previewTabId ? fileId : id))
+        : [...openTabs, fileId];
 
       tabs.set(projectId, {
         openTabs: newTabs,

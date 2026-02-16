@@ -7,10 +7,10 @@ export const CreateInput = ({
   type,
   level,
   onSubmit,
-  onCancel
+  onCancel,
 }: {
-  type: "file" | "folder",
-  level: number,
+  type: "file" | "folder";
+  level: number;
   onSubmit: (name: string) => void;
   onCancel: () => void;
 }) => {
@@ -23,10 +23,11 @@ export const CreateInput = ({
     } else {
       onCancel();
     }
-  }
+  };
 
   return (
-    <div className="w-full flex items-center gap-1 h-5.5 bg-accent/30"
+    <div
+      className="w-full flex items-center gap-1 h-5.5 bg-accent/30"
       style={{ paddingLeft: getItemPadding(level, type === "file") }}
     >
       <div className="flex items-center gap-0.5">

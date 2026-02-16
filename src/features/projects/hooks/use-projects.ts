@@ -39,19 +39,18 @@ export const useCreateProject = () => {
           ...existingProjects,
         ]);
       }
-    }
-  )
+    },
+  );
 };
 
 export const useRenameProject = () => {
   return useMutation(api.projects.rename).withOptimisticUpdate(
     (localStore, args) => {
-      const existingProject = localStore.getQuery(
-        api.projects.getById,
-        { id: args.id }
-      );
+      const existingProject = localStore.getQuery(api.projects.getById, {
+        id: args.id,
+      });
 
-      if (existingProject !== undefined  && existingProject !== null) {
+      if (existingProject !== undefined && existingProject !== null) {
         localStore.setQuery(
           api.projects.getById,
           { id: args.id },
@@ -59,7 +58,7 @@ export const useRenameProject = () => {
             ...existingProject,
             name: args.name,
             updatedAt: Date.now(),
-          }
+          },
         );
       }
 
@@ -72,10 +71,10 @@ export const useRenameProject = () => {
           existingProjects.map((project) => {
             return project._id === args.id
               ? { ...project, name: args.name, updatedAt: Date.now() }
-              : project
-          })
+              : project;
+          }),
         );
       }
-    }
-  )
+    },
+  );
 };
