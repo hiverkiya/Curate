@@ -1,5 +1,4 @@
 import { ShieldAlertIcon } from "lucide-react";
-
 import {
   Item,
   ItemActions,
@@ -27,8 +26,8 @@ export const UnauthenticatedView = () => {
           </ItemContent>
           <ItemActions>
             <SignInButton>
-              <Button variant="outline" size="sm">
-                Sign in
+              <Button variant="outline" size="default">
+                Login to Continue
               </Button>
             </SignInButton>
           </ItemActions>

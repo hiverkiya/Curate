@@ -19,7 +19,7 @@ export const useProjectsPartial = (limit: number) => {
   });
 };
 
-export const useCreateProject = () => {
+export const useCreateProject = (projectId: Id<"projects">) => {
   return useMutation(api.projects.create).withOptimisticUpdate(
     (localStore, args) => {
       const existingProjects = localStore.getQuery(api.projects.get);
@@ -43,7 +43,7 @@ export const useCreateProject = () => {
   );
 };
 
-export const useRenameProject = () => {
+export const useRenameProject = (projectId: Id<"projects">) => {
   return useMutation(api.projects.rename).withOptimisticUpdate(
     (localStore, args) => {
       const existingProject = localStore.getQuery(api.projects.getById, {
