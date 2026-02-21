@@ -2,6 +2,9 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Provide an explicit, possibly-empty Turbopack config so Next.js
+  // doesn't error when a webpack config is present (e.g. from plugins).
+  turbopack: {},
   /* config options here */
 };
 
