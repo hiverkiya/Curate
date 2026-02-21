@@ -12,11 +12,10 @@ Sentry.init({
   tracesSampleRate: 1,
 
   // Enable logs to be sent to Sentry
-  enableLogs: true,
-
   // Enable sending user PII (Personally Identifiable Information)
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#sendDefaultPii
   sendDefaultPii: true,
+  enableLogs: true,
   integrations: [
     // The `vercelAIIntegration` export is not available in the
     // installed `@sentry/nextjs` package; remove it to avoid build errors.
