@@ -59,8 +59,7 @@ export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
         <div
           role="button"
           onClick={() => setIsOpen((value) => !value)}
-          className="group/project cursor-pointer w-full text-left flex items-center gap-0.5 h-5.5 bg-accent font-bold"
-        >
+          className="group/project cursor-pointer w-full text-left flex items-center gap-0.5 h-5.5 bg-accent font-bold">
           <ChevronRightIcon
             className={cn(
               "size-4 shrink-0 text-muted-foreground",
@@ -70,7 +69,7 @@ export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
           <p className="text-xs uppercase line-clamp-1">
             {project?.name ?? "Loading..."}
           </p>
-          <div className="opacity-0 group-hover/project:opacity-100 transition-none duration-0 flex items-center gap-0.5 ml-auto">
+          <div className="opacity-60 group-hover/project:opacity-100 transition-none duration-0 flex items-center gap-0.5 ml-auto">
             <Button
               onClick={(e) => {
                 e.stopPropagation();
@@ -79,8 +78,7 @@ export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
                 setCreating("file");
               }}
               variant="highlight"
-              size="icon-xs"
-            >
+              size="icon-xs">
               <FilePlusCornerIcon className="size-3.5" />
             </Button>
             <Button
@@ -91,8 +89,7 @@ export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
                 setCreating("folder");
               }}
               variant="highlight"
-              size="icon-xs"
-            >
+              size="icon-xs">
               <FolderPlusIcon className="size-3.5" />
             </Button>
             <Button
@@ -102,8 +99,7 @@ export const FileExplorer = ({ projectId }: { projectId: Id<"projects"> }) => {
                 setCollapseKey((prev) => prev + 1);
               }}
               variant="highlight"
-              size="icon-xs"
-            >
+              size="icon-xs">
               <CopyMinusIcon className="size-3.5" />
             </Button>
           </div>
