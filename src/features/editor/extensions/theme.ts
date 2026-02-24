@@ -6,7 +6,7 @@ export const customTheme = EditorView.theme({
     height: "100%",
   },
   ".cm-content": {
-    fontFamily: "var(--font-plex-mono), monospace",
+    fontFamily: "var(--font-jetbrains-mono), monospace",
     fontSize: "14px",
   },
   ".cm-scroller": {

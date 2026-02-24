@@ -1,7 +1,5 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-
 import { useFile } from "@/features/projects/hooks/use-files";
-
 import { useEditor } from "../hooks/use-editor";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { cn } from "@/lib/utils";

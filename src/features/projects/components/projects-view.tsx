@@ -60,7 +60,8 @@ export const ProjectsView = () => {
                 className={cn(
                   "text-4xl md:text-5xl font-semibold",
                   font.className,
-                )}>
+                )}
+              >
                 Curate
               </h1>
             </div>
@@ -81,7 +82,8 @@ export const ProjectsView = () => {
                     name: projectName,
                   });
                 }}
-                className="h-full items-start justify-start p-4 bg-background border flex flex-col gap-6 rounded-none">
+                className="h-full items-start justify-start p-4 bg-background border flex flex-col gap-6 rounded-none"
+              >
                 <div className="flex items-center justify-between w-full">
                   <SquareTerminalIcon className="size-4" />
                   <Kbd className="bg-accent border uppercase">CTRL+J</Kbd>
@@ -93,7 +95,8 @@ export const ProjectsView = () => {
               <Button
                 variant="outline"
                 onClick={() => {}}
-                className="h-full items-start justify-start p-4 bg-background border flex flex-col gap-6 rounded-none">
+                className="h-full items-start justify-start p-4 bg-background border flex flex-col gap-6 rounded-none"
+              >
                 <div className="flex items-center justify-between w-full">
                   <FaGithub className="size-4" />
                   <Kbd className="bg-accent border uppercase">CTRL+I</Kbd>
