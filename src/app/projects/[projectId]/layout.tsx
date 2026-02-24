@@ -2,6 +2,13 @@ import { ProjectIdLayout } from "@/features/projects/components/project-id-layou
 
 import { Id } from "../../../../convex/_generated/dataModel";
 
+// Check for validator types
+// Next's App Router validator expects route params to be strings (e.g. `projectId: string`).
+// If you want to keep Convex `Id<"projects">` in downstream code, uncomment the
+// alternative implementation below, which accepts `params` as `string` and casts it
+// to `Id<"projects">` at runtime. Leave the current implementation active until
+// you're ready to uncomment and run the build.
+
 const Layout = async ({
   children,
   params,
@@ -15,3 +22,21 @@ const Layout = async ({
 };
 
 export default Layout;
+
+/*
+// Alternative (uncomment to apply):
+// const Layout = async ({
+//   children,
+//   params,
+// }: {
+//   children: React.ReactNode;
+//   params: Promise<{ projectId: string }>;
+// }) => {
+//   const { projectId: projectIdStr } = await params;
+//   const projectId = projectIdStr as Id<"projects">;
+//
+//   return <ProjectIdLayout projectId={projectId}>{children}</ProjectIdLayout>;
+// };
+//
+// export default Layout;
+*/

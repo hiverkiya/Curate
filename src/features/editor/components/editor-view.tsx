@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Poppins } from "next/font/google";
 import { useRef } from "react";
 
 import { useFile, useUpdateFile } from "@/features/projects/hooks/use-files";
@@ -8,8 +9,14 @@ import { useEditor } from "../hooks/use-editor";
 import { TopNavigation } from "./top-navigation";
 import { FileBreadcrumbs } from "./file-breadcrumbs";
 import { Id } from "../../../../convex/_generated/dataModel";
+import { cn } from "@/lib/utils";
 
-const DEBOUNCE_MS = 1500;
+const font = Poppins({
+  subsets: ["latin"],
+  weight: ["200", "300"],
+});
+
+const DEBOUNCE_MS = 200;
 
 export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
   const { activeTabId } = useEditor(projectId);
@@ -36,6 +43,15 @@ export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
               height={50}
               className="opacity-25"
             />
+            <span
+              style={{ color: "#4e5158" }}
+              className={cn(
+                font.className,
+                "text-3xl md:text-4xl font-semibold ",
+              )}
+            >
+              urate
+            </span>
           </div>
         )}
         {isActiveFileText && (
