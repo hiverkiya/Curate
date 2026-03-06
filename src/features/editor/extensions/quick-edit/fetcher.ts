@@ -1,17 +1,17 @@
 import ky from "ky";
 import { z } from "zod";
 import { toast } from "sonner";
-const editRequestSchema=z.object({
+const editRequestSchema = z.object({
   selectedCode: z.string(),
-  fullCode:z.string(),
-  instruction:z.string(),
+  fullCode: z.string(),
+  instruction: z.string(),
 });
 
 const editResponseSchema = z.object({
   editedCode: z.string(),
 });
-type EditRequest=z.infer<typeof editRequestSchema>;
-type EditResponse=z.infer<typeof editResponseSchema>;
+type EditRequest = z.infer<typeof editRequestSchema>;
+type EditResponse = z.infer<typeof editResponseSchema>;
 export const fetcher = async (
   payload: EditRequest,
   signal: AbortSignal,

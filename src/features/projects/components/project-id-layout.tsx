@@ -32,7 +32,8 @@ export const ProjectIdLayout = ({
             minSize={MIN_SIDEBAR_WIDTH}
             maxSize={MAX_SIDEBAR_WIDTH}
             preferredSize={DEFAULT_CONVERSATION_SIDEBAR_WIDTH}
-          ><ConversationSidebar projectId={projectId} />
+          >
+            <ConversationSidebar projectId={projectId} />
           </Allotment.Pane>
           <Allotment.Pane>{children}</Allotment.Pane>
         </Allotment>

@@ -57,7 +57,8 @@ export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
               className={cn(
                 font.className,
                 "text-3xl md:text-4xl font-semibold ",
-              )}>
+              )}
+            >
               urate
             </span>
           </div>

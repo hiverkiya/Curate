@@ -2,8 +2,8 @@ import { generateText, Output } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { anthropic } from "@ai-sdk/anthropic";
-import { google } from "@ai-sdk/google";
 import { auth } from "@clerk/nextjs/server";
+
 const suggestionSchema = z.object({
   suggestion: z
     .string()
@@ -11,6 +11,7 @@ const suggestionSchema = z.object({
       "The code to insert at cursor, or empty string if no completion needed",
     ),
 });
+
 const SUGGESTION_PROMPT = `You are a code suggestion assistant.
 
 <context>
@@ -47,6 +48,7 @@ export async function POST(request: Request) {
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
     const {
       fileName,
       code,
@@ -57,9 +59,11 @@ export async function POST(request: Request) {
       nextLines,
       lineNumber,
     } = await request.json();
+
     if (!code) {
       return NextResponse.json({ error: "Code is required" }, { status: 400 });
     }
+
     const prompt = SUGGESTION_PROMPT.replace("{fileName}", fileName)
       .replace("{code}", code)
       .replace("{currentLine}", currentLine)
@@ -70,10 +74,11 @@ export async function POST(request: Request) {
       .replace("{lineNumber}", lineNumber.toString());
 
     const { output } = await generateText({
-      model: google("gemini-2.5-flash"),
+      model: anthropic("claude-3-haiku-20240307"),
       output: Output.object({ schema: suggestionSchema }),
       prompt,
     });
+
     return NextResponse.json({ suggestion: output.suggestion });
   } catch (error) {
     console.error("Suggestion error: ", error);

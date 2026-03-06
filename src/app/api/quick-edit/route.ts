@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { firecrawl } from "@/lib/firecrawl";
 import { auth } from "@clerk/nextjs/server";
+
 const quickEditSchema = z.object({
   editedCode: z
     .string()
@@ -11,6 +12,7 @@ const quickEditSchema = z.object({
       "The edited version of the selected code based on the instruction",
     ),
 });
+
 const URL_REGEX = /https?:\/\/[^\s)>\]]+/g;
 
 const QUICK_EDIT_PROMPT = `You are a code editing assistant. Edit the selected code based on the user's instruction.
@@ -41,6 +43,7 @@ export async function POST(request: Request) {
   try {
     const { userId } = await auth();
     const { selectedCode, fullCode, instruction } = await request.json();
+
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -56,8 +59,10 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
+
     const urls: string[] = instruction.match(URL_REGEX) || [];
     let documentationContext = "";
+
     if (urls.length > 0) {
       const scrapedResults = await Promise.all(
         urls.map(async (url) => {
@@ -79,15 +84,18 @@ export async function POST(request: Request) {
         documentationContext = `<documentation>\n${validResults.join("\n\n")}\n</documentation>`;
       }
     }
+
     const prompt = QUICK_EDIT_PROMPT.replace("{selectedCode}", selectedCode)
       .replace("{fullCode}", fullCode || "")
       .replace("{instruction}", instruction)
       .replace("{documentation}", documentationContext);
+
     const { output } = await generateText({
-      model: anthropic("claude-3-7-sonnet-20250219"),
+      model: anthropic("claude-3-5-sonnet-20241022"),
       output: Output.object({ schema: quickEditSchema }),
       prompt,
     });
+
     return NextResponse.json({ editedCode: output.editedCode });
   } catch (error) {
     console.error("Edit error:", error);
