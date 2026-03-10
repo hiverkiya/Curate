@@ -2,13 +2,21 @@ import { inngest } from "@/inngest/client";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { NonRetriableError } from "inngest";
 import { convex } from "@/lib/convex-client";
-import { api } from "../../../../convex/_generated/api";
+import { api, internal } from "../../../../convex/_generated/api";
 import {
   CODING_AGENT_SYSTEM_PROMPT,
   TITLE_GENERATOR_SYSTEM_PROMPT,
 } from "./constants";
 import { DEFAULT_CONVERSATION_TITLE } from "../constants";
-import { createAgent, anthropic } from "@inngest/agent-kit";
+import { createAgent, anthropic, createNetwork } from "@inngest/agent-kit";
+import { createReadFilesTool } from "@/inngest/tools/read-file";
+import { createListFilesTool } from "@/inngest/tools/list-files";
+import { createUpdateFileTool } from "@/inngest/tools/update-file";
+import { createCreateFilesTool } from "@/inngest/tools/create-files";
+import { createCreateFolderTool } from "@/inngest/tools/create-folder.ts";
+import { createRenameFileTool } from "@/inngest/tools/rename-file";
+import { createDeleteFilesTool } from "@/inngest/tools/delete-files";
+import { createScrapeUrlsTool } from "@/inngest/tools/scrape-urls";
 
 interface MessageEvent {
   messageId: Id<"messages">;
@@ -93,7 +101,7 @@ export const processMessage = inngest.createFunction(
         name: "title-generator",
         system: TITLE_GENERATOR_SYSTEM_PROMPT,
         model: anthropic({
-          model: "claude-3-haiku-20240307",
+          model: "claude-3-5-haiku-20241022",
           defaultParameters: { temperature: 0, max_tokens: 50 },
         }),
       });
@@ -123,13 +131,70 @@ export const processMessage = inngest.createFunction(
         }
       }
     }
-
+    // Create the coding agent with file tools
+    const codingAgent = createAgent({
+      name: "curate",
+      description: "An expert AI coding assistant",
+      system: systemPrompt,
+      model: anthropic({
+        model: "claude-opus-4-20250514", //Opus, if you need reasoning
+        defaultParameters: { temperature: 0.2, max_tokens: 16000 }, // Can change tokens to 16000, if needed
+      }),
+      tools: [
+        createListFilesTool({ internalKey, projectId }),
+        createReadFilesTool({ internalKey }),
+        createUpdateFileTool({ internalKey }),
+        createCreateFilesTool({ projectId, internalKey }),
+        createCreateFolderTool({ projectId, internalKey }),
+        createRenameFileTool({ internalKey }),
+        createDeleteFilesTool({ internalKey }),
+        createScrapeUrlsTool,
+      ],
+    });
+    // Create network with single agent
+    const network = createNetwork({
+      name: "curate-network",
+      agents: [codingAgent],
+      maxIter: 15, // Can tweak the iterations depending on the budget
+      router: ({ network }) => {
+        const lastResult = network.state.results.at(-1);
+        const hasTextResponse = lastResult?.output.some(
+          (m) => m.type === "text" && m.role === "assistant",
+        );
+        const hasToolCalls = lastResult?.output.some(
+          (m) => m.type === "tool_call",
+        );
+        // Anthropic outputs text and tool calls together
+        // Only stop if there's text without tool calls (final response)
+        if (hasTextResponse && !hasToolCalls) {
+          return undefined;
+        }
+        return codingAgent;
+      },
+    });
+    //Running the agent
+    const result = await network.run(message);
+    // Extract the assistant's text response from the last agent result
+    const lastResult = result.state.results.at(-1);
+    const textMessage = lastResult?.output.find(
+      (m) => m.type === "text" && m.role === "assistant",
+    );
+    let assistantResponse =
+      "I processed your request. Let me know if you need anything else!";
+    if (textMessage?.type === "text") {
+      assistantResponse =
+        typeof textMessage.content === "string"
+          ? textMessage.content
+          : textMessage.content.map((c) => c.text).join("");
+    }
+    // Update the assistant message with the response ( also sets the status to completed)
     await step.run("update-assistant-message", async () => {
       await convex.mutation(api.system.updateMessageContent, {
         internalKey,
         messageId,
-        content: "AI processed this message",
+        content: assistantResponse,
       });
     });
+    return { success: true, messageId, conversationId };
   },
 );
