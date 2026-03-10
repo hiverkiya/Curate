@@ -148,7 +148,7 @@ export const processMessage = inngest.createFunction(
         createCreateFolderTool({ projectId, internalKey }),
         createRenameFileTool({ internalKey }),
         createDeleteFilesTool({ internalKey }),
-        createScrapeUrlsTool,
+        createScrapeUrlsTool(),
       ],
     });
     // Create network with single agent
