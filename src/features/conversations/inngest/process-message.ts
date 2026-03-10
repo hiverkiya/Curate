@@ -13,10 +13,10 @@ import { createReadFilesTool } from "@/inngest/tools/read-file";
 import { createListFilesTool } from "@/inngest/tools/list-files";
 import { createUpdateFileTool } from "@/inngest/tools/update-file";
 import { createCreateFilesTool } from "@/inngest/tools/create-files";
-import { createCreateFolderTool } from "@/inngest/tools/create-folder.ts";
 import { createRenameFileTool } from "@/inngest/tools/rename-file";
 import { createDeleteFilesTool } from "@/inngest/tools/delete-files";
 import { createScrapeUrlsTool } from "@/inngest/tools/scrape-urls";
+import { createCreateFolderTool } from "@/inngest/tools/create-folder";
 
 interface MessageEvent {
   messageId: Id<"messages">;
