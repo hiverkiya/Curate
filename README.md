@@ -1,121 +1,131 @@
-# Curate — AI-Powered Web IDE (Summary)
+# 🚀 Curate — AI-Powered Web IDE
 
 ## Overview
 
-**Curate** is a browser-based, AI-native Integrated Development Environment (IDE) that combines real-time collaboration, AI-assisted coding, GitHub workflows, and production-grade observability into a unified system.
+**Curate** is a browser-based **AI-native IDE** that combines real-time collaboration, AI-assisted coding, GitHub workflows, and production-grade observability.
 
-It integrates real-time backend infrastructure, advanced editor capabilities, and background AI orchestration to deliver a cloud-native developer experience.
-
----
-
-## Core Architecture
-
-Curate is built on:
-
-- **Next.js + TypeScript** for the frontend framework.
-- **Convex** for real-time database syncing and backend logic.
-- **Clerk** for authentication, billing, and GitHub OAuth.
-- **CodeMirror 6** as the extensible in-browser code editor.
-- **Zustand** for editor state management.
-- **Ingest** for asynchronous AI job orchestration.
-- **Firecrol AI** for live web content ingestion to enrich AI context.
-- **Sentry** for error tracking, AI telemetry, and session replay.
-- **Chats UI (Shatsen)** for structured UI components and chat elements.
+It merges modern frontend tooling, real-time backend infrastructure, and background AI orchestration to create a **cloud-native development experience directly in the browser.**
 
 ---
 
-## System Capabilities
+## 🧠 Core Architecture
 
-### Real-Time Infrastructure
+Curate is powered by the following technologies:
 
-- Instant file and project synchronization via Convex.
-- Recursive file tree structures supporting binary and text files.
-- Optimistic UI updates for responsive interactions.
-
-### Authentication & Security
-
-- Clerk-managed user sessions and GitHub integration.
-- Route-level protection through Next.js middleware (`proxy.ts`).
-- Secure backend access using internal keys and validation layers.
-
-### AI-Augmented Development
-
-- Ghost text inline code suggestions.
-- Instruction-based quick edits on selected code.
-- Multi-turn AI chat sidebar with persistent conversations.
-- Background AI processing with cancelation support.
-- Context enrichment using live web scraping (Firecrol).
-
-### IDE Experience
-
-- Resizable split-pane layout with preview and editor modes.
-- Multi-file tab system with pinning and close controls.
-- Breadcrumb-based navigation.
-- Syntax detection for major programming languages.
-- Autosave with debouncing.
-- File explorer with infinite nesting, inline renaming, and context menus.
-
-### Observability & Monitoring
-
-- Client, API, and background job error tracking via Sentry.
-- AI token usage and cost telemetry.
-- Structured logs correlating user activity with system events.
-- Session replay for debugging workflows.
+| Technology | Purpose |
+|------------|--------|
+| ⚡ **Next.js + TypeScript** | Frontend framework & application structure |
+| 🔄 **Convex** | Real-time database & backend logic |
+| 🔐 **Clerk** | Authentication, billing, GitHub OAuth |
+| ✏️ **CodeMirror 6** | Extensible in-browser code editor |
+| 🧩 **Zustand** | Lightweight editor state management |
+| 🤖 **Inngest** | Background AI orchestration |
+| 🌐 **Firecrawl** | Live web content ingestion for AI context |
+| 🛰 **Sentry** | Error monitoring, AI telemetry & session replay |
+| 💬 **Chats UI** | Structured chat & interface components |
 
 ---
 
-## Development Progression (High-Level)
+## ⚙️ Key Capabilities
 
-The project evolves through:
+### 🔄 Real-Time Infrastructure
 
-1. Project scaffolding and UI foundation.
-2. Authentication and GitHub integration.
-3. Real-time database configuration.
-4. AI SDK integration and background job handling.
-5. Live documentation ingestion via web scraping.
-6. Error monitoring and telemetry instrumentation.
-7. Project and IDE interface implementation.
-8. Advanced editor integration with AI extensions.
-9. Conversation system with asynchronous AI responses.
+- Instant project and file synchronization
+- Recursive file tree for text & binary assets
+- Optimistic UI updates for responsive editing
 
 ---
 
-## Architectural Themes
+### 🔐 Authentication & Security
 
-- **AI-first workflow design** — AI is embedded directly into editing, conversation, and code transformation processes.
-- **Real-time synchronization without manual websocket handling** — powered by Convex.
-- **Non-blocking UX patterns** — long-running AI tasks operate asynchronously.
-- **Security-first backend design** — strict validation and protected API routes.
-- **Production-grade observability** — AI costs, errors, and system state are continuously monitored.
-- **Modular, component-driven frontend architecture** — built for scalability and maintainability.
+- Clerk-managed authentication
+- GitHub OAuth integration
+- Route protection via Next.js middleware
+- Secure backend validation using internal keys
 
 ---
 
-## Technology Stack (Representative Versions)
+### 🤖 AI-Augmented Development
 
-- Next.js 16.1.1
-- React 19.2.3
-- Convex 1.31.2
-- Clerk 6.36.5
-- CodeMirror 6.x
-- Ingest 3.48.1
-- Zustand
-- Sentry (Next.js integration)
-- Chats UI 3.6.2
+- Inline **ghost text suggestions**
+- Instruction-based **AI quick edits**
+- Persistent **AI chat conversations**
+- Background AI tasks with cancellation
+- Context enrichment via **live web scraping**
 
 ---
 
-## Strategic Insights
+### 💻 IDE Experience
 
-- Real-time databases combined with AI orchestration enable highly interactive cloud IDE experiences.
-- AI model limitations (knowledge cutoffs) can be mitigated through dynamic web context ingestion.
-- Background job systems are essential for scalable AI-driven applications.
-- Observability of AI calls and cost tracking is critical for sustainable SaaS operations.
-- Advanced UI/UX refinements significantly impact developer productivity.
-- AI-assisted code review and automation extend beyond editing into quality assurance workflows.
+- Resizable **editor + preview layout**
+- Multi-file tab system with pinning
+- Breadcrumb navigation
+- Language-aware syntax highlighting
+- Autosave with smart debouncing
+- Infinite-nested file explorer
 
 ---
 
-## Conclusion
+### 📊 Observability & Monitoring
 
-Curate represents a fully integrated AI-enhanced development platform that merges real-time infrastructure, conversational AI, intelligent code editing, and production-level observability into a cohesive cloud IDE architecture.
+- Full-stack error tracking with **Sentry**
+- AI token usage & cost monitoring
+- Structured logging across services
+- Session replay for debugging workflows
+
+---
+
+## 🛠 Development Stages
+
+The platform evolved through the following phases:
+
+1. UI scaffolding and project structure
+2. Authentication & GitHub integration
+3. Real-time database setup
+4. AI SDK + background job orchestration
+5. Web context ingestion for AI
+6. Monitoring & telemetry instrumentation
+7. IDE interface implementation
+8. Advanced editor extensions
+9. AI conversation system
+
+---
+
+## 🧩 Architectural Principles
+
+- **AI-first development workflows**
+- **Real-time sync without manual WebSockets**
+- **Asynchronous AI processing**
+- **Security-first backend architecture**
+- **Full observability of AI usage & costs**
+- **Modular, component-driven frontend**
+
+---
+
+## 🧰 Technology Stack
+
+- ⚡ **Next.js 16**
+- ⚛ **React 19**
+- 🔄 **Convex**
+- 🔐 **Clerk**
+- ✏️ **CodeMirror 6**
+- 🤖 **Inngest**
+- 🧩 **Zustand**
+- 🛰 **Sentry**
+- 💬 **Chats UI**
+
+---
+
+## 💡 Key Insights
+
+- Real-time databases dramatically improve **cloud IDE responsiveness**
+- AI context can be extended using **live web data ingestion**
+- Background job systems are essential for **scalable AI workflows**
+- Observability is critical for **controlling AI costs in production**
+- Strong UI/UX design directly improves **developer productivity**
+
+---
+
+## 🏁 Conclusion
+
+**Curate** demonstrates how modern real-time infrastructure, conversational AI, intelligent code editing, and production-grade observability can combine to form a **fully integrated AI-powered development platform in the browser.**
