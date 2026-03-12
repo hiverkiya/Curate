@@ -2,6 +2,23 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Cross-Origin-Embedder-Policy",
+            value: "credentialless",
+          },
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin",
+          },
+        ],
+      },
+    ];
+  },
   // Provide an explicit, possibly-empty Turbopack config so Next.js
   // doesn't error when a webpack config is present (e.g. from plugins).
   turbopack: {},

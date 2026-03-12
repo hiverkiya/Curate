@@ -13,10 +13,10 @@ import { createReadFilesTool } from "@/inngest/tools/read-file";
 import { createListFilesTool } from "@/inngest/tools/list-files";
 import { createUpdateFileTool } from "@/inngest/tools/update-file";
 import { createCreateFilesTool } from "@/inngest/tools/create-files";
-import { createCreateFolderTool } from "@/inngest/tools/create-folder.ts";
 import { createRenameFileTool } from "@/inngest/tools/rename-file";
 import { createDeleteFilesTool } from "@/inngest/tools/delete-files";
 import { createScrapeUrlsTool } from "@/inngest/tools/scrape-urls";
+import { createCreateFolderTool } from "@/inngest/tools/create-folder";
 
 interface MessageEvent {
   messageId: Id<"messages">;
@@ -77,7 +77,7 @@ export const processMessage = inngest.createFunction(
       return await convex.query(api.system.getRecentMessages, {
         internalKey,
         conversationId,
-        limit: 10,
+        limit: 5, // Could put it at 10, reducing it to 5 to save context cost
       });
     });
 
@@ -101,7 +101,7 @@ export const processMessage = inngest.createFunction(
         name: "title-generator",
         system: TITLE_GENERATOR_SYSTEM_PROMPT,
         model: anthropic({
-          model: "claude-3-5-haiku-20241022",
+          model: "claude-3-haiku-20240307",
           defaultParameters: { temperature: 0, max_tokens: 50 },
         }),
       });
@@ -137,8 +137,8 @@ export const processMessage = inngest.createFunction(
       description: "An expert AI coding assistant",
       system: systemPrompt,
       model: anthropic({
-        model: "claude-opus-4-20250514", //Opus, if you need reasoning
-        defaultParameters: { temperature: 0.2, max_tokens: 16000 }, // Can change tokens to 16000, if needed
+        model: "claude-sonnet-4-5-20250929", //Opus, if you need reasoning
+        defaultParameters: { temperature: 0.2, max_tokens: 8000 }, // Can change tokens to 16000, if needed
       }),
       tools: [
         createListFilesTool({ internalKey, projectId }),
@@ -155,7 +155,7 @@ export const processMessage = inngest.createFunction(
     const network = createNetwork({
       name: "curate-network",
       agents: [codingAgent],
-      maxIter: 15, // Can tweak the iterations depending on the budget
+      maxIter: 5, // Can tweak the iterations depending on the budget
       router: ({ network }) => {
         const lastResult = network.state.results.at(-1);
         const hasTextResponse = lastResult?.output.some(

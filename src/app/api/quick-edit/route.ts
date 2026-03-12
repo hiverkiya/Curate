@@ -91,7 +91,7 @@ export async function POST(request: Request) {
       .replace("{documentation}", documentationContext);
 
     const { output } = await generateText({
-      model: anthropic("claude-3-5-sonnet-20241022"),
+      model: anthropic("claude-haiku-4-5-20251001"),
       output: Output.object({ schema: quickEditSchema }),
       prompt,
     });
