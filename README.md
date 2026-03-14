@@ -1,28 +1,27 @@
-# 🚀 Curate — AI-Powered Web IDE
+# 🚀 Curate — AI-Native Cloud IDE
 
 ## Overview
 
 **Curate** is a browser-based **AI-native IDE** that combines real-time collaboration, AI-assisted coding, GitHub workflows, and production-grade observability.
 
-It merges modern frontend tooling, real-time backend infrastructure, and background AI orchestration to create a **cloud-native development experience directly in the browser.**
+It merges modern frontend tooling, real-time backend infrastructure, and background AI orchestration to create a **cloud-native development experience directly in the browser** — no local setup required.
 
 ---
 
 ## 🧠 Core Architecture
 
-Curate is powered by the following technologies:
-
 | Technology | Purpose |
-|------------|--------|
-| ⚡ **Next.js + TypeScript** | Frontend framework & application structure |
-| 🔄 **Convex** | Real-time database & backend logic |
-| 🔐 **Clerk** | Authentication, billing, GitHub OAuth |
-| ✏️ **CodeMirror 6** | Extensible in-browser code editor |
+|------------|---------|
+| ⚡ **Next.js 16 + TypeScript** | Frontend framework & application structure |
+| 🔄 **Convex** | Real-time database, backend logic & internal APIs |
+| 🔐 **Clerk** | Authentication, session management & GitHub OAuth |
+| ✏️ **CodeMirror 6** | Extensible in-browser code editor with language support |
 | 🧩 **Zustand** | Lightweight editor state management |
-| 🤖 **Inngest** | Background AI orchestration |
-| 🌐 **Firecrawl** | Live web content ingestion for AI context |
+| 🤖 **Inngest + AgentKit** | Background AI orchestration & durable agent workflows |
+| 🌐 **Firecrawl** | Live web content ingestion for real-time AI context |
 | 🛰 **Sentry** | Error monitoring, AI telemetry & session replay |
-| 💬 **Chats UI** | Structured chat & interface components |
+| 💬 **Streamdown** | Streaming markdown rendering for AI chat responses |
+| 📦 **WebContainers** | In-browser Node.js runtime for live project previews |
 
 ---
 
@@ -30,75 +29,85 @@ Curate is powered by the following technologies:
 
 ### 🔄 Real-Time Infrastructure
 
-- Instant project and file synchronization
-- Recursive file tree for text & binary assets
+- Instant project and file synchronization via Convex
+- Recursive file tree supporting text & binary assets
 - Optimistic UI updates for responsive editing
+- Live preview via WebContainers — no server required
 
 ---
 
 ### 🔐 Authentication & Security
 
-- Clerk-managed authentication
-- GitHub OAuth integration
+- Clerk-managed authentication with session handling
+- GitHub OAuth integration for import & export workflows
 - Route protection via Next.js middleware
 - Secure backend validation using internal keys
+- All AI API keys server-side only — never exposed to client
 
 ---
 
 ### 🤖 AI-Augmented Development
 
-- Inline **ghost text suggestions**
+- Inline **ghost text suggestions** using lightweight AI models
 - Instruction-based **AI quick edits**
-- Persistent **AI chat conversations**
-- Background AI tasks with cancellation
-- Context enrichment via **live web scraping**
+- Persistent **AI chat conversations** with full context history
+- **Coding agent** capable of reading, creating, updating, renaming, and deleting files
+- Multi-step reasoning workflows via AgentKit
+- Background AI tasks with real-time cancellation support
+- Context enrichment via **live web scraping** with Firecrawl
+- Token-optimized prompts for cost-efficient AI usage
 
 ---
 
 ### 💻 IDE Experience
 
-- Resizable **editor + preview layout**
-- Multi-file tab system with pinning
-- Breadcrumb navigation
-- Language-aware syntax highlighting
+- Resizable **editor + preview** split layout via WebContainers
+- Multi-file tab system with pinning support
+- Breadcrumb navigation for deep file trees
+- Language-aware syntax highlighting via CodeMirror 6
 - Autosave with smart debouncing
 - Infinite-nested file explorer
+- `Cmd/Ctrl+K` quick edit — select code, type an instruction, apply AI edit inline
 
 ---
 
 ### 📊 Observability & Monitoring
 
-- Full-stack error tracking with **Sentry**
-- AI token usage & cost monitoring
-- Structured logging across services
-- Session replay for debugging workflows
+- Full-stack error tracking with Sentry
+- AI token usage & cost monitoring per model
+- Structured logging across all services
+- Session replay for debugging user workflows
+- Per-model cost breakdown for optimizing AI workloads
 
 ---
 
 ## 🛠 Development Stages
 
-The platform evolved through the following phases:
-
-1. UI scaffolding and project structure
-2. Authentication & GitHub integration
-3. Real-time database setup
-4. AI SDK + background job orchestration
-5. Web context ingestion for AI
-6. Monitoring & telemetry instrumentation
-7. IDE interface implementation
-8. Advanced editor extensions
-9. AI conversation system
+1. UI scaffolding and project structure  
+2. Authentication & GitHub OAuth integration  
+3. Real-time database setup with Convex  
+4. AI SDK integration + background job orchestration with Inngest  
+5. Coding agent with file tools & multi-step reasoning  
+6. Web context ingestion via Firecrawl  
+7. WebContainers integration for live browser previews  
+8. Monitoring & telemetry instrumentation with Sentry  
+9. IDE interface — editor, tabs, file tree, resizable layout  
+10. Advanced editor extensions — ghost text, quick edit, syntax highlighting  
+11. AI conversation system with streaming markdown rendering  
+12. Token & cost optimization across all AI routes  
 
 ---
 
 ## 🧩 Architectural Principles
 
-- **AI-first development workflows**
-- **Real-time sync without manual WebSockets**
-- **Asynchronous AI processing**
-- **Security-first backend architecture**
-- **Full observability of AI usage & costs**
-- **Modular, component-driven frontend**
+- **AI-first development workflows** — every editing surface has AI assistance
+- **Real-time sync without manual WebSockets** — Convex handles all reactivity
+- **Asynchronous AI processing** — Inngest ensures no request timeouts
+- **Security-first backend architecture** — all keys and mutations server-side
+- **Full observability of AI usage & costs** — per-model token tracking
+- **Modular, component-driven frontend** — composable UI across all surfaces
+- **WebContainer-native project execution** — no external servers needed
+- **Cost-optimized model selection** — right model for each task
 
 ---
 
@@ -109,23 +118,48 @@ The platform evolved through the following phases:
 - 🔄 **Convex**
 - 🔐 **Clerk**
 - ✏️ **CodeMirror 6**
-- 🤖 **Inngest**
+- 🤖 **Inngest + AgentKit**
 - 🧩 **Zustand**
 - 🛰 **Sentry**
-- 💬 **Chats UI**
+- 💬 **Streamdown**
+- 📦 **WebContainers**
+- 🌐 **Firecrawl**
+- 🎞 **Framer Motion**
+
+---
+
+## 💰 AI Cost Architecture
+
+| Route | Model | Est. Cost / Call |
+|------|------|------------------|
+| 🔤 Title generation | **Claude Haiku** | ~$0.00006 |
+| 💡 Inline suggestions | **Claude Haiku** | ~$0.00015 |
+| ✏️ Quick edit | **Claude Haiku** | ~$0.0015 |
+| 🤖 Coding agent | **Claude Sonnet** | ~$0.05 – $0.20 |
+
+### Cost Optimization Strategy
+
+Curate uses a **tiered AI architecture** to control operational costs:
+
+- **Claude Haiku** powers lightweight tasks such as title generation, inline suggestions, and quick edits.
+- **Claude Sonnet** is reserved for complex coding-agent workflows that require deeper reasoning and tool usage.
+
+This separation dramatically reduces AI infrastructure costs while preserving high-quality reasoning when needed.
 
 ---
 
 ## 💡 Key Insights
 
 - Real-time databases dramatically improve **cloud IDE responsiveness**
-- AI context can be extended using **live web data ingestion**
-- Background job systems are essential for **scalable AI workflows**
+- AI context is enriched using **live web data ingestion** at request time
+- Background job systems are essential for **scalable, cancellable AI workflows**
 - Observability is critical for **controlling AI costs in production**
-- Strong UI/UX design directly improves **developer productivity**
+- WebContainers eliminate the need for **any external preview infrastructure**
+- Model selection per task is the single biggest lever for **AI cost control**
+- Strong UI/UX design with Framer Motion directly improves **developer experience**
 
 ---
 
 ## 🏁 Conclusion
 
-**Curate** demonstrates how modern real-time infrastructure, conversational AI, intelligent code editing, and production-grade observability can combine to form a **fully integrated AI-powered development platform in the browser.**
+**Curate** demonstrates how modern real-time infrastructure, conversational AI, intelligent code editing, in-browser execution, and production-grade observability can combine to form a **fully integrated AI-powered development platform in the browser** — with no local setup, no DevOps overhead, and AI assistance at every layer of the development workflow.
