@@ -15,6 +15,7 @@ import { ProjectsCommandDialog } from "./projects-command-dialog";
 import Image from "next/image";
 import { ImportGithubDialog } from "./import-github-dialog";
 import { NewProjectDialog } from "./new-project-dialog";
+import { TechStackButton } from "./tech-stack-button";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -96,7 +97,6 @@ export const ProjectsView = () => {
             }}
           />
         </div>
-
         {/* UI CONTENT */}
         <div className="relative z-10 w-full max-w-sm mx-auto flex flex-col gap-4 items-center">
           <div className="flex justify-between gap-4 w-full items-center">
@@ -136,7 +136,6 @@ export const ProjectsView = () => {
               </h1>
             </div>
           </div>
-
           <div className="flex flex-col gap-4 w-full">
             <div className="grid grid-cols-2 gap-2">
               <Button
@@ -172,6 +171,7 @@ export const ProjectsView = () => {
 
             <ProjectsList onViewAll={() => setCommandDialogOpen(true)} />
           </div>
+          <TechStackButton />
         </div>
       </div>
     </>

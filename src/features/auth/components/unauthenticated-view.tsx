@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { TechStackButton } from "@/features/projects/components/tech-stack-button";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -245,13 +246,14 @@ export const UnauthenticatedView = () => {
               <Button
                 variant="outline"
                 size="default"
-                className="w-full border-blue-500/25 uppercase font-mono tracking-widest hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300"
+                className="w-full  border-blue-500/25 uppercase font-mono tracking-widest hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300"
               >
                 {">"} Sign In
               </Button>
             </SignInButton>
           </motion.div>
         </motion.div>
+        <TechStackButton />
       </motion.div>
     </div>
   );
