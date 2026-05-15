@@ -7,20 +7,26 @@ import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
-
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-  weight: ["200", "300"],
+  weight: ["400"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Curate",
-  description: "AI-Powered IDE",
+  title: {
+    default: "Curate",
+    template: "%s | Curate",
+  },
+  description:
+    "AI-native browser IDE with real-time collaboration, GitHub workflows, and AI-assisted coding.",
   icons: {
     icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/apple-touch-icon.png",
   },
 };
 
