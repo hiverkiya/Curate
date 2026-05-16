@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import { FaGithub } from "react-icons/fa";
-import { AlertCircleIcon, GlobeIcon, Loader2Icon } from "lucide-react";
+import { AlertCircleIcon, Loader2Icon, SparklesIcon } from "lucide-react";
 
 import {
   CommandDialog,
@@ -34,7 +34,7 @@ const getProjectIcon = (project: Doc<"projects">) => {
     );
   }
 
-  return <GlobeIcon className="size-4 text-muted-foreground" />;
+  return <SparklesIcon className="size-4 text-muted-foreground" />;
 };
 
 export const ProjectsCommandDialog = ({

@@ -202,3 +202,14 @@
 ::-webkit-scrollbar-thumb {
   @apply rounded-full border border-transparent bg-border bg-clip-padding;
 }
+@keyframes cube-spin {
+  0% {
+    transform: rotateX(-18deg) rotateY(0deg);
+  }
+  50% {
+    transform: rotateX(-18deg) rotateY(180deg);
+  }
+  100% {
+    transform: rotateX(-18deg) rotateY(360deg);
+  }
+}

@@ -15,7 +15,7 @@ import { ProjectsCommandDialog } from "./projects-command-dialog";
 import Image from "next/image";
 import { ImportGithubDialog } from "./import-github-dialog";
 import { NewProjectDialog } from "./new-project-dialog";
-import { TechStackButton } from "./tech-stack-button";
+import { ProjectLearningsButton } from "./project-learnings-button";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -120,15 +120,15 @@ export const ProjectsView = () => {
                 <Image
                   src="/logo.svg"
                   alt="Curate"
-                  width={32}
-                  height={32}
+                  width={34}
+                  height={34}
                   className="md:size-18 brightness-110 contrast-125"
                 />
               </motion.div>
 
               <h1
                 className={cn(
-                  "text-4xl md:text-5xl font-semibold",
+                  "text-6xl md:text-6xl font-semibold ",
                   font.className,
                 )}
               >
@@ -149,7 +149,7 @@ export const ProjectsView = () => {
                 </div>
 
                 <div>
-                  <span className="text-sm">New</span>
+                  <span className="text-sm">New Project</span>
                 </div>
               </Button>
 
@@ -164,14 +164,18 @@ export const ProjectsView = () => {
                 </div>
 
                 <div>
-                  <span className="text-sm">Import</span>
+                  <span className="text-sm">GitHub Import</span>
                 </div>
               </Button>
             </div>
 
             <ProjectsList onViewAll={() => setCommandDialogOpen(true)} />
           </div>
-          <TechStackButton />
+          <div className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2">
+            <div className="w-[calc(100vw-3rem)] max-w-sm rounded-2xl bg-sidebar/80 backdrop-blur-md">
+              <ProjectLearningsButton />
+            </div>
+          </div>
         </div>
       </div>
     </>

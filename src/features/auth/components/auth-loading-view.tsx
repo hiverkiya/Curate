@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Spinner } from "@/components/ui/spinner";
+import { CubeLoader } from "@/features/projects/components/cube-loader";
 
 export const AuthLoadingView = () => {
   return (
@@ -30,7 +31,7 @@ export const AuthLoadingView = () => {
 
         <div className="flex flex-col items-center text-center">
           <div className="mb-5 flex size-14 items-center justify-center rounded-2xl bg-primary/10">
-            <Spinner className="size-6 text-primary" />
+            <CubeLoader className="size-6 text-primary" />
           </div>
 
           <h1 className="text-2xl font-semibold tracking-tight">Loading...</h1>
