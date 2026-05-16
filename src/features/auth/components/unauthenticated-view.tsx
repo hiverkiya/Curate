@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ProjectLearningsButton } from "@/features/projects/components/project-learnings-button";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -245,13 +246,18 @@ export const UnauthenticatedView = () => {
               <Button
                 variant="outline"
                 size="default"
-                className="w-full border-blue-500/25 uppercase font-mono tracking-widest hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300"
+                className="w-full  border-blue-500/25 uppercase font-mono tracking-widest hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300"
               >
                 {">"} Sign In
               </Button>
             </SignInButton>
           </motion.div>
         </motion.div>
+        <div className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2">
+          <div className="w-[calc(100vw-3rem)] max-w-sm rounded-2xl bg-sidebar/80 backdrop-blur-md">
+            <ProjectLearningsButton />
+          </div>
+        </div>
       </motion.div>
     </div>
   );

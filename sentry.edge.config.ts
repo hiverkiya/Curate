@@ -20,5 +20,6 @@ Sentry.init({
     // The `vercelAIIntegration` export is not available in the
     // installed `@sentry/nextjs` package; remove it to avoid build errors.
     Sentry.consoleLoggingIntegration({ levels: ["log", "warn", "error"] }),
+    Sentry.vercelAIIntegration,
   ],
 });

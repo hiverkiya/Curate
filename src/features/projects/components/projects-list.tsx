@@ -3,9 +3,11 @@ import { FaGithub } from "react-icons/fa";
 import { formatDistanceToNow } from "date-fns";
 import {
   AlertCircleIcon,
+  AlertTriangleIcon,
   ArrowRightIcon,
   GlobeIcon,
   Loader2Icon,
+  SparklesIcon,
 } from "lucide-react";
 
 import { Kbd } from "@/components/ui/kbd";
@@ -15,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Doc } from "../../../../convex/_generated/dataModel";
 
 import { useProjectsPartial } from "../hooks/use-projects";
+import { CubeLoader } from "./cube-loader";
 
 const formatTimestamp = (timestamp: number) => {
   return formatDistanceToNow(new Date(timestamp), {
@@ -28,16 +31,14 @@ const getProjectIcon = (project: Doc<"projects">) => {
   }
 
   if (project.importStatus === "failed") {
-    return <AlertCircleIcon className="size-3.5 text-muted-foreground" />;
+    return <AlertTriangleIcon className="size-3.5 text-destructive" />;
   }
 
   if (project.importStatus === "importing") {
-    return (
-      <Loader2Icon className="size-3.5 text-muted-foreground animate-spin" />
-    );
+    return <Loader2Icon className="size-3.5 animate-spin text-primary" />;
   }
 
-  return <GlobeIcon className="size-3.5 text-muted-foreground" />;
+  return <SparklesIcon className="size-3.5 text-primary/80" />;
 };
 
 interface ProjectsListProps {
@@ -88,10 +89,10 @@ const ProjectItem = ({ data }: { data: Doc<"projects"> }) => {
 };
 
 export const ProjectsList = ({ onViewAll }: ProjectsListProps) => {
-  const projects = useProjectsPartial(6);
+  const projects = useProjectsPartial(5);
 
   if (projects === undefined) {
-    return <Spinner className="size-4 text-ring" />;
+    return <CubeLoader />;
   }
 
   const [mostRecent, ...rest] = projects;

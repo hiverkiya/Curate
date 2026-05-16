@@ -16,7 +16,9 @@ const ProjectIdPage = async ({
 
   return <ProjectIdView projectId={projectId as Id<"projects">} />;
 };
-
+export const metadata = {
+  title: "Project",
+};
 export default ProjectIdPage;
 
 /*
