@@ -7,6 +7,7 @@ import {
   AuthLoading,
 } from "convex/react";
 import { ClerkProvider, useAuth } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 import { ConvexProviderWithClerk } from "convex/react-clerk";
 
 import { UnauthenticatedView } from "@/features/auth/components/unauthenticated-view";
@@ -17,6 +18,9 @@ import { ThemeProvider } from "./theme-provider";
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
+  const pathname = usePathname();
+  const isPublicRoute = pathname?.startsWith("/learnings");
+
   return (
     <ClerkProvider appearance={{ theme: dark }}>
       <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
@@ -26,13 +30,19 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
           enableSystem
           disableTransitionOnChange
         >
-          <Authenticated>{children}</Authenticated>
-          <Unauthenticated>
-            <UnauthenticatedView />
-          </Unauthenticated>
-          <AuthLoading>
-            <AuthLoadingView />
-          </AuthLoading>
+          {isPublicRoute ? (
+            children
+          ) : (
+            <>
+              <Authenticated>{children}</Authenticated>
+              <Unauthenticated>
+                <UnauthenticatedView />
+              </Unauthenticated>
+              <AuthLoading>
+                <AuthLoadingView />
+              </AuthLoading>
+            </>
+          )}
         </ThemeProvider>
       </ConvexProviderWithClerk>
     </ClerkProvider>

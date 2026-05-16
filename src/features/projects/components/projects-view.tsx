@@ -16,6 +16,7 @@ import Image from "next/image";
 import { ImportGithubDialog } from "./import-github-dialog";
 import { NewProjectDialog } from "./new-project-dialog";
 import { ProjectLearningsButton } from "./project-learnings-button";
+import { UserButton } from "@clerk/nextjs";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -69,6 +70,18 @@ export const ProjectsView = () => {
       />
 
       <div className="relative min-h-screen bg-sidebar flex flex-col items-center justify-center p-6 md:p-16 overflow-hidden">
+        <div className="fixed right-4 top-4 md:right-6 md:top-6 z-50">
+          <UserButton
+            appearance={{
+              elements: {
+                avatarBox:
+                  "size-10 rounded-md   bg-card shadow-lg hover:scale-110 transition",
+                userButtonPopoverCard:
+                  "border border-border bg-card shadow-2xl",
+              },
+            }}
+          />
+        </div>
         {/* ANIMATED GRADIENT BLOBS */}
         <div className="absolute inset-0 pointer-events-none">
           <motion.div
