@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { CloudCheckIcon, LoaderIcon } from "lucide-react";
+import { CloudCheckIcon, Loader2Icon } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
 import { Poppins } from "next/font/google";
 import { formatDistanceToNow } from "date-fns";
@@ -26,6 +26,7 @@ import { cn } from "@/lib/utils";
 
 import { Id } from "../../../../convex/_generated/dataModel";
 import { useProject, useRenameProject } from "../hooks/use-projects";
+import { CubeLoader } from "./cube-loader";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -63,15 +64,24 @@ export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
   };
 
   return (
-    <nav className="flex justify-between items-center gap-x-2 p-2 bg-sidebar border-b">
+    <nav className="flex justify-between items-center gap-x-2 h-12 px-4 bg-sidebar/80 backdrop-blur-xl border-b">
       <div className="flex items-center gap-x-2">
         <Breadcrumb>
-          <BreadcrumbList className="gap-0!">
+          <BreadcrumbList className="gap-1!">
             <BreadcrumbItem>
               <BreadcrumbLink className="flex items-center gap-1.5" asChild>
-                <Button variant="ghost" className="w-fit! p-1.5! h-7!" asChild>
+                <Button
+                  variant="secondary"
+                  className="w-fit! p-1.5! h-8!"
+                  asChild
+                >
                   <Link href="/">
-                    <Image src="/logo.svg" alt="Logo" width={20} height={20} />
+                    <Image
+                      src="/curate.svg"
+                      alt="Curate logo"
+                      width={20}
+                      height={20}
+                    />
                     <span className={cn("text-sm font-medium", font.className)}>
                       Curate
                     </span>
@@ -90,12 +100,12 @@ export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
                   onFocus={(e) => e.currentTarget.select()}
                   onBlur={handleSubmit}
                   onKeyDown={handleKeyDown}
-                  className="text-sm bg-transparent text-foreground outline-none focus:ring-1 focus:ring-inset focus:ring-ring font-medium max-w-40 truncate"
+                  className=" h-6 w-48    rounded-md    border    border-border    bg-card    px-3     text-sm     font-medium     text-foreground shadow-sm     outline-none  transition placeholder:text-muted-foreground"
                 />
               ) : (
                 <BreadcrumbPage
                   onClick={handleStartRename}
-                  className="text-sm cursor-pointer hover:text-primary font-medium max-w-40 truncate"
+                  className="text-sm cursor-pointer font-medium max-w-48 truncate  rounded-md px-2  py-1 transition hover:bg-accent"
                 >
                   {project?.name ?? "Loading..."}
                 </BreadcrumbPage>
@@ -106,7 +116,9 @@ export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
         {project?.importStatus === "importing" ? (
           <Tooltip>
             <TooltipTrigger asChild>
-              <LoaderIcon className="size-4 text-muted-foreground animate-spin" />
+              <div className="flex h-5 w-5 items-center justify-center">
+                <Loader2Icon className="size-4 animate-spin text-muted-foreground" />
+              </div>
             </TooltipTrigger>
             <TooltipContent>Importing...</TooltipContent>
           </Tooltip>
@@ -119,13 +131,23 @@ export const Navbar = ({ projectId }: { projectId: Id<"projects"> }) => {
               Saved{" "}
               {project?.updatedAt
                 ? formatDistanceToNow(project.updatedAt, { addSuffix: true })
-                : "loading..."}
+                : "Loading..."}
             </TooltipContent>
           </Tooltip>
         )}
       </div>
       <div className="flex items-center gap-2">
-        <UserButton />
+        <UserButton
+          appearance={{
+            elements: {
+              avatarBox:
+                "size-9 rounded-lg  bg-card shadow-sm transition hover:scale-110 hover:shadow-md",
+              userButtonPopoverCard: " bg-card shadow-2xl rounded-xl",
+              userButtonPopoverActionButton: "hover:bg-accent transition",
+              userButtonPopoverFooter: "hidden",
+            },
+          }}
+        />
       </div>
     </nav>
   );

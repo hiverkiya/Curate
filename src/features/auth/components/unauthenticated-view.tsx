@@ -146,7 +146,7 @@ export const UnauthenticatedView = () => {
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
             <Image
-              src="/logo.svg"
+              src="/curate.svg"
               alt="Curate"
               width={32}
               height={32}
@@ -233,7 +233,7 @@ export const UnauthenticatedView = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
           >
-            session_id: <span className="text-blue-400/60">0x4A2F</span>
+            session_id: <span className="text-green-400/60">0x4A2F</span>
           </motion.div>
 
           <motion.div
@@ -246,7 +246,7 @@ export const UnauthenticatedView = () => {
               <Button
                 variant="outline"
                 size="default"
-                className="w-full  border-blue-500/25 uppercase font-mono tracking-widest hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300"
+                className="w-full  border-blue-500/25 hover:text-green-400/60 uppercase font-mono tracking-widest hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300"
               >
                 {">"} Sign In
               </Button>

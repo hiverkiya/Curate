@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   description:
     "AI-native browser IDE with real-time collaboration, GitHub workflows, and AI-assisted coding.",
   icons: {
-    icon: "/logo.svg",
-    shortcut: "/logo.svg",
+    icon: "/curate.svg",
+    shortcut: "/curate.svg",
     apple: "/apple-touch-icon.png",
   },
 };

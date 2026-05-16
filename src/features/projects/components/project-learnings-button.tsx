@@ -10,7 +10,7 @@ export const ProjectLearningsButton = () => {
     <Button
       asChild
       variant="outline"
-      className="w-full rounded-none border bg-background px-4 py-6 text-sm transition hover:bg-accent"
+      className="w-full rounded-none border bg-background px-4 py-6 text-sm hover:bg-accent"
     >
       <Link href="/learnings" className="w-full">
         <div className="flex w-full items-center justify-between">

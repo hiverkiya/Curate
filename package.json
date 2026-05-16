@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm run web\" \"npm run convex\" \"npm run inngest\"",
+    "format": "prettier . --write",
+    "dev": "npm run format && concurrently \"npm run web\" \"npm run convex\" \"npm run inngest\"",
     "web": "next dev",
     "convex": "npx convex dev",
     "inngest": "npx -y inngest-cli@0.24.1 dev",

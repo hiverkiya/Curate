@@ -30,8 +30,9 @@ const Tab = ({
     <div
       onClick={onClick}
       className={cn(
-        "flex items-center gap-2 h-full px-3 cursor-pointer text-muted-foreground border-r hover:bg-accent/30",
-        isActive && "bg-background text-foreground",
+        "relative flex h-full cursor-pointer items-center gap-2 border-r px-4 text-sm font-medium transition",
+        "text-muted-foreground hover:bg-accent/40",
+        isActive && "border-transparent bg-background text-foreground",
       )}
     >
       <span className="text-sm">{label}</span>
@@ -62,8 +63,10 @@ export const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
       <div className="flex-1 relative">
         <div
           className={cn(
-            "absolute inset-0",
-            activeView === "editor" ? "visible" : "invisible",
+            "absolute inset-0 transition-opacity duration-150",
+            activeView === "editor"
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0",
           )}
         >
           <Allotment defaultSizes={[DEFAULT_SIDEBAR_WIDTH, DEFAULT_MAIN_SIZE]}>
@@ -82,8 +85,10 @@ export const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
         </div>
         <div
           className={cn(
-            "absolute inset-0",
-            activeView === "preview" ? "visible" : "invisible",
+            "absolute inset-0 transition-opacity duration-150",
+            activeView === "preview"
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0",
           )}
         >
           <PreviewView projectId={projectId} />{" "}

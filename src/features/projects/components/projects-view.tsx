@@ -131,7 +131,7 @@ export const ProjectsView = () => {
                 }}
               >
                 <Image
-                  src="/logo.svg"
+                  src="/curate.svg"
                   alt="Curate"
                   width={34}
                   height={34}
