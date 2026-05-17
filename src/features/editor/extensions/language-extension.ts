@@ -1,4 +1,6 @@
 import { Extension } from "@codemirror/state";
+import { StreamLanguage } from "@codemirror/language";
+import { shell } from "@codemirror/legacy-modes/mode/shell";
 import { javascript } from "@codemirror/lang-javascript";
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
@@ -22,26 +24,37 @@ export const getLanguageExtension = (filename: string): Extension => {
   switch (ext) {
     case "js":
       return javascript();
+
     case "jsx":
       return javascript({ jsx: true });
+
     case "ts":
       return javascript({ typescript: true });
+
     case "tsx":
       return javascript({ typescript: true, jsx: true });
+
     case "html":
     case "htm":
       return html();
+
     case "css":
       return css();
+
     case "json":
       return json();
+
     case "md":
     case "mdx":
       return markdown();
+
     case "py":
       return python();
+
     case "java":
       return java();
+
+    case "c":
     case "cpp":
     case "cc":
     case "cxx":
@@ -50,26 +63,41 @@ export const getLanguageExtension = (filename: string): Extension => {
     case "hpp":
     case "hxx":
       return cpp();
+
     case "go":
       return go();
+
     case "rs":
       return rust();
+
     case "php":
       return php();
+
     case "sql":
       return sql();
+
     case "xml":
     case "svg":
       return xml();
+
     case "yaml":
     case "yml":
       return yaml();
+
     case "scss":
     case "sass":
       return sass();
+
     case "less":
       return less();
+
+    case "sh":
+    case "bash":
+    case "zsh":
+    case "env":
+      return StreamLanguage.define(shell);
+
     default:
-      return javascript(); // Default to JavaScript if unknown extension
+      return [];
   }
 };

@@ -3,9 +3,8 @@ import { useFile } from "@/features/projects/hooks/use-files";
 import { useEditor } from "../hooks/use-editor";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
-import { Spinner } from "@/components/ui/spinner";
 import { FileIcon } from "@react-symbols/icons/utils";
-import { XIcon } from "lucide-react";
+import { PinIcon, XIcon } from "lucide-react";
 
 const Tab = ({
   fileId,
@@ -29,21 +28,37 @@ const Tab = ({
       onClick={() => setActiveTab(fileId)}
       onDoubleClick={() => openFile(fileId, { pinned: true })}
       className={cn(
-        "flex items-center gap-2 h-8.75 pl-2 pr-1.5 cursor-pointer text-muted-foreground group border-y border-x border-transparent hover:bg-accent/30",
+        "group flex h-8.5 cursor-pointer items-center gap-2 border-x border-y border-transparent px-3 text-muted-foreground transition-colors duration-150",
+        " select-none",
+        "hover:bg-accent/30",
         isActive &&
-          "bg-background text-foreground border-x-border border-b-background -mb-px drop-shadow",
-        isFirst && "border-l-transparent!",
+          "bg-background text-foreground border-x-border border-b-background -mb-px shadow-[inset_0_2px_0_hsl(var(--primary))]",
+        isFirst && "border-l-transparent",
       )}
     >
       {file === undefined ? (
-        <Spinner className="text-ring" />
+        <div className="size-4 animate-pulse rounded bg-muted" />
       ) : (
-        <FileIcon fileName={fileName} autoAssign className="size-4" />
+        <FileIcon fileName={fileName} autoAssign className="size-4 shrink-0" />
       )}
-      <span className={cn("text-sm whitespace-nowrap", isPreview && "italic")}>
-        {fileName}
-      </span>
+
+      <div className="flex items-center gap-1.5">
+        <span
+          className={cn("whitespace-nowrap text-sm", isPreview && "italic")}
+        >
+          {fileName}
+        </span>
+
+        {isPreview && (
+          <div className="size-1.5  rounded-full bg-yellow-400 shrink-0 animate-pulse" />
+        )}
+        {!isPreview && (
+          <PinIcon className="size-3 shrink-0 rotate-12 text-white/70" />
+        )}
+      </div>
+
       <button
+        type="button"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -57,11 +72,11 @@ const Tab = ({
           }
         }}
         className={cn(
-          "p-0.5 rounded-sm hover:bg-white/10 opacity-0 group-hover:opacity-100",
+          "rounded-sm p-0.5 opacity-0 transition-opacity duration-150 hover:bg-accent/70 group-hover:opacity-100",
           isActive && "opacity-100",
         )}
       >
-        <XIcon className="size-3.5" />
+        <XIcon className="size-3.5 text-red-300" />
       </button>
     </div>
   );
@@ -71,17 +86,24 @@ export const TopNavigation = ({ projectId }: { projectId: Id<"projects"> }) => {
   const { openTabs } = useEditor(projectId);
 
   return (
-    <ScrollArea className="flex-1">
-      <nav className="bg-sidebar flex items-center h-8.75 border-b">
-        {openTabs.map((fileId, index) => (
-          <Tab
-            key={fileId}
-            fileId={fileId}
-            isFirst={index === 0}
-            projectId={projectId}
-          />
-        ))}
+    <ScrollArea className="flex-1 overflow-hidden">
+      <nav className="flex h-8.75 items-center border-b bg-sidebar/95 backdrop-blur-xl">
+        {openTabs.length === 0 ? (
+          <div className="px-4 text-xs text-muted-foreground">
+            No files open
+          </div>
+        ) : (
+          openTabs.map((fileId, index) => (
+            <Tab
+              key={fileId}
+              fileId={fileId}
+              isFirst={index === 0}
+              projectId={projectId}
+            />
+          ))
+        )}
       </nav>
+
       <ScrollBar orientation="horizontal" />
     </ScrollArea>
   );

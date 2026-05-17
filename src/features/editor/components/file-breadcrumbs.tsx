@@ -8,7 +8,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbPage,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
@@ -25,47 +24,51 @@ export const FileBreadcrumbs = ({
 
   if (filePath === undefined || !activeTabId) {
     return (
-      <div className="p-2 bg-background pl-4 border-b">
-        <Breadcrumb>
-          <BreadcrumbList className="sm:gap-0.5 gap-0.5">
-            <BreadcrumbItem className="text-sm">
-              <BreadcrumbPage>&nbsp;</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+      <div className="border-b bg-background/95 px-4 py-2 backdrop-blur-xl">
+        <div className="flex items-center gap-2">
+          <div className="size-4 animate-pulse rounded bg-muted" />
+          <div className="h-3 w-40 animate-pulse rounded bg-muted" />
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="p-2 bg-background pl-4 border-b">
-      <Breadcrumb>
-        <BreadcrumbList className="sm:gap-0.5 gap-0.5">
-          {filePath.map((item, index) => {
-            const isLast = index === filePath.length - 1;
+    <div className="border-b bg-background/95 px-4 py-2 backdrop-blur-xl">
+      <div className="overflow-hidden">
+        <Breadcrumb>
+          <BreadcrumbList className="flex-nowrap gap-1 overflow-hidden">
+            {filePath.map((item, index) => {
+              const isLast = index === filePath.length - 1;
 
-            return (
-              <React.Fragment key={item._id}>
-                <BreadcrumbItem className="text-sm">
-                  {isLast ? (
-                    <BreadcrumbPage className="flex items-center gap-1">
-                      <FileIcon
-                        fileName={item.name}
-                        autoAssign
-                        className="size-4"
-                      />
-                      {item.name}
-                    </BreadcrumbPage>
-                  ) : (
-                    <BreadcrumbLink href="#">{item.name}</BreadcrumbLink>
+              return (
+                <React.Fragment key={item._id}>
+                  <BreadcrumbItem className="min-w-0 text-xs">
+                    {isLast ? (
+                      <BreadcrumbPage className="flex min-w-0 items-center gap-1 rounded-md px-1.5 py-0.5 font-medium text-foreground transition-colors duration-150 hover:bg-accent/20">
+                        <FileIcon
+                          fileName={item.name}
+                          autoAssign
+                          className="size-4 shrink-0"
+                        />
+                        <span className="truncate">{item.name}</span>
+                      </BreadcrumbPage>
+                    ) : (
+                      <BreadcrumbPage className="truncate rounded-md px-1.5 py-0.5 text-muted-foreground transition-colors duration-150 hover:bg-accent/40 hover:text-foreground">
+                        {item.name}
+                      </BreadcrumbPage>
+                    )}
+                  </BreadcrumbItem>
+
+                  {!isLast && (
+                    <BreadcrumbSeparator className="shrink-0 text-muted-foreground/50" />
                   )}
-                </BreadcrumbItem>
-                {!isLast && <BreadcrumbSeparator />}
-              </React.Fragment>
-            );
-          })}
-        </BreadcrumbList>
-      </Breadcrumb>
+                </React.Fragment>
+              );
+            })}
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
     </div>
   );
 };

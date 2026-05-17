@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Poppins } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -13,15 +13,15 @@ import { Id } from "../../../../convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
 import { AlertTriangleIcon } from "lucide-react";
 
-const font = Poppins({
+const font = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["200", "300"],
 });
 
-const DEBOUNCE_MS = 200;
+const DEBOUNCE_MS = 500;
 
 export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
-  const { activeTabId } = useEditor(projectId);
+  const { activeTabId, previewTabId, openFile } = useEditor(projectId);
   const activeFile = useFile(activeTabId);
   const updateFile = useUpdateFile();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -32,7 +32,7 @@ export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
   const codeSymbols = ["{ }", "<>", "()", "</>", "[]"];
 
   const [particles] = useState(() =>
-    Array.from({ length: 8 }).map(() => ({
+    Array.from({ length: 5 }).map(() => ({
       left: Math.random() * 100,
       duration: 6 + Math.random() * 4,
       delay: Math.random() * 6,
@@ -49,22 +49,22 @@ export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
   }, [activeTabId]);
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="flex h-full flex-col">
       <div className="flex items-center">
         <TopNavigation projectId={projectId} />
       </div>
 
       {activeTabId && <FileBreadcrumbs projectId={projectId} />}
 
-      <div className="flex-1 min-h-0 bg-background">
+      <div className="min-h-0 flex-1 bg-background">
         {/* EMPTY STATE */}
         {!activeFile && (
-          <div className="size-full flex items-center justify-center relative overflow-hidden">
+          <div className="relative flex size-full items-center justify-center overflow-hidden bg-gradient-to-b from-background to-muted/10">
             {/* MINI CODE PARTICLES */}
             {particles.map((p, i) => (
               <motion.span
                 key={i}
-                className="absolute text-xs text-muted-foreground/40 font-mono"
+                className="absolute font-mono text-xs text-muted-foreground/20"
                 style={{
                   left: `${p.left}%`,
                   top: "-10px",
@@ -85,48 +85,45 @@ export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
             ))}
 
             {/* LOGO + TEXT */}
-            <motion.div
-              className="flex items-center"
-              animate={{
-                y: [0, -6, 0],
-                scale: [1, 1.02, 1],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <Image
-                src="/logo-alt.svg"
-                alt="Curate"
-                width={50}
-                height={50}
-                className="opacity-25"
-              />
+            <motion.div className="flex flex-col items-center">
+              <div className="flex items-center">
+                <Image
+                  src="/logo-alt.svg"
+                  alt="Curate"
+                  width={50}
+                  height={50}
+                  className="opacity-25"
+                />
 
-              {/* TEXT + CURSOR */}
-              <span
-                style={{ color: "#4e5158" }}
-                className={cn(
-                  font.className,
-                  "text-3xl md:text-4xl font-semibold flex items-center",
-                )}
-              >
-                urate
-                {/* blinking cursor */}
-                <motion.span
-                  className="ml-1"
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{
-                    duration: 1.2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+                <span
+                  className={cn(
+                    font.className,
+                    "flex items-center text-3xl font-semibold text-muted-foreground/60 md:text-4xl",
+                  )}
                 >
-                  _
-                </motion.span>
-              </span>
+                  urate
+                  <motion.span
+                    className="ml-1"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{
+                      duration: 1.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    |
+                  </motion.span>
+                </span>
+              </div>
+
+              <div className="mt-6 space-y-1 text-center">
+                <p className="text-sm text-muted-foreground">
+                  Open a file from the explorer to start coding
+                </p>
+                <p className="text-xs text-muted-foreground/70">
+                  Single click previews • Double click pins
+                </p>
+              </div>
             </motion.div>
           </div>
         )}
@@ -138,12 +135,19 @@ export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
             fileName={activeFile.name}
             initialValue={activeFile.content}
             onChange={(content: string) => {
+              if (previewTabId === activeFile._id) {
+                openFile(activeFile._id, { pinned: true });
+              }
+
               if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
               }
 
               timeoutRef.current = setTimeout(() => {
-                updateFile({ id: activeFile._id, content });
+                updateFile({
+                  id: activeFile._id,
+                  content,
+                });
               }, DEBOUNCE_MS);
             }}
           />
@@ -151,13 +155,21 @@ export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
 
         {/* BINARY FILE MESSAGE */}
         {isActiveFileBinary && (
-          <div className="size-full flex items-center justify-center">
-            <div className="flex flex-col items-center gap-2.5 max-w-md text-center">
-              <AlertTriangleIcon className="size-10 text-yellow-500" />
-              <p className="text-sm">
-                The file is not displayed in the text editor because it is
-                either binary or uses an unsupported text encoding.
-              </p>
+          <div className="flex size-full items-center justify-center">
+            <div className="max-w-md rounded-2xl border bg-card p-8 text-center shadow-sm">
+              <div className="flex flex-col items-center gap-4">
+                <AlertTriangleIcon className="size-10 text-amber-500" />
+
+                <div className="space-y-2">
+                  <p className="text-sm font-medium text-foreground">
+                    This file can&apos;t be previewed in the editor.
+                  </p>
+
+                  <p className="text-sm text-muted-foreground">
+                    Binary file or unsupported encoding detected.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         )}
