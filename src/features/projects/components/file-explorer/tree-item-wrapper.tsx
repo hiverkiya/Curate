@@ -38,45 +38,63 @@ export const TreeItemWrapper = ({
     <ContextMenu>
       <ContextMenuTrigger asChild>
         <button
+          type="button"
           onClick={onClick}
           onDoubleClick={onDoubleClick}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === "F2") {
               e.preventDefault();
               onRename?.();
             }
+
+            if (e.key === "Delete") {
+              e.preventDefault();
+              onDelete?.();
+            }
           }}
           className={cn(
-            "group flex items-center gap-1 w-full h-5.5 hover:bg-accent/30 outline-none focus:ring-1 focus:ring-inset focus:ring-ring",
-            isActive && "bg-accent/30",
+            "group flex h-8 w-full cursor-pointer items-center gap-1 transition-colors duration-150",
+            "hover:bg-accent/30",
+            "focus-visible:bg-accent/40 focus-visible:outline-none",
+            isActive &&
+              "bg-accent/40 text-foreground shadow-[inset_2px_0_0_hsl(var(--primary))]",
           )}
           style={{ paddingLeft: getItemPadding(level, item.type === "file") }}
         >
           {children}
         </button>
       </ContextMenuTrigger>
+
       <ContextMenuContent
         onCloseAutoFocus={(e) => e.preventDefault()}
-        className="w-64"
+        className="w-56 rounded-xl border-border bg-popover/95 backdrop-blur-xl"
       >
         {item.type === "folder" && (
           <>
             <ContextMenuItem onClick={onCreateFile} className="text-sm">
-              New File...
+              New File
             </ContextMenuItem>
+
             <ContextMenuItem onClick={onCreateFolder} className="text-sm">
-              New Folder...
+              New Folder
             </ContextMenuItem>
+
             <ContextMenuSeparator />
           </>
         )}
+
         <ContextMenuItem onClick={onRename} className="text-sm">
-          Rename...
-          <ContextMenuShortcut>Enter</ContextMenuShortcut>
+          Rename
+          <ContextMenuShortcut>F2</ContextMenuShortcut>
         </ContextMenuItem>
-        <ContextMenuItem onClick={onDelete} className="text-sm">
-          Delete Permanently
-          <ContextMenuShortcut>⌘Backspace</ContextMenuShortcut>
+
+        <ContextMenuItem
+          onClick={onDelete}
+          className="text-sm text-red-400 focus:text-red-400
+          "
+        >
+          Delete
+          <ContextMenuShortcut>Del</ContextMenuShortcut>
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>

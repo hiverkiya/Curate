@@ -75,7 +75,7 @@ export const ProjectsView = () => {
             appearance={{
               elements: {
                 avatarBox:
-                  "size-10 rounded-md   bg-card shadow-lg hover:scale-110 transition",
+                  "size-14 rounded-md   bg-card shadow-lg hover:scale-120 transition",
                 userButtonPopoverCard:
                   "border border-border bg-card shadow-2xl",
               },

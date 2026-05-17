@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Allotment } from "allotment";
-import { FaGithub } from "react-icons/fa";
 
 import { cn } from "@/lib/utils";
 import { EditorView } from "@/features/editor/components/editor-view";
@@ -56,6 +55,10 @@ export const ProjectIdView = ({ projectId }: { projectId: Id<"projects"> }) => {
           isActive={activeView === "preview"}
           onClick={() => setActiveView("preview")}
         />
+        <div className="ml-4 hidden items-center gap-2 text-xs text-muted-foreground lg:flex">
+          <div className="size-2 rounded-full bg-green-500" />
+          <span>Refresh preview after code changes</span>
+        </div>
         <div className="flex-1 flex justify-end h-full">
           <ExportPopover projectId={projectId} />
         </div>
