@@ -68,7 +68,7 @@ export const customSetup: Extension = (() => [
   highlightActiveLine(),
   highlightSelectionMatches(),
   scrollPastEnd(), // Allow scrolling past end of document
-  placeholder("Start Typing..."), // Hint text in empty editor
+  placeholder("Start Coding..."), // Hint text in empty editor
   search(), // Add visual search panel (Ctrl+F)
   linter(() => []), // Linter setup - can be extended with language-specific linters
   hoverTooltip((view, pos) => {
