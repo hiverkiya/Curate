@@ -110,8 +110,8 @@ export const Tree = ({
           deleteFile({ id: item._id });
         }}
       >
-        <FileIcon fileName={fileName} autoAssign className="size-4" />
-        <span className="truncate text-sm">{fileName}</span>
+        <FileIcon fileName={fileName} autoAssign className="size-4 shrink-0" />
+        <span className="truncate text-sm ">{fileName}</span>
       </TreeItemWrapper>
     );
   }
@@ -123,13 +123,13 @@ export const Tree = ({
       <div className="flex items-center gap-0.5">
         <ChevronRightIcon
           className={cn(
-            "size-4 shrink-0 text-muted-foreground",
+            "size-4 shrink-0 text-muted-foreground transition-transform duration-150",
             isOpen && "rotate-90",
           )}
         />
-        <FolderIcon folderName={folderName} className="size-4" />
+        <FolderIcon folderName={folderName} className="size-4 shrink-0" />
       </div>
-      <span className="truncate text-sm">{folderName}</span>
+      <span className="truncate text-sm ">{folderName}</span>
     </>
   );
 
@@ -138,7 +138,7 @@ export const Tree = ({
       <>
         <button
           onClick={() => setIsOpen((value) => !value)}
-          className="group flex items-center gap-1 h-5.5 hover:bg-accent/30 w-full"
+          className="group flex items-center gap-1 h-8 hover:bg-accent/30 w-full"
           style={{ paddingLeft: getItemPadding(level, false) }}
         >
           {folderRender}

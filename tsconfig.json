@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
-, "src/list_models.js"  ],
+    "**/*.mts",
+    "src/list_models.js"
+  ],
   "exclude": ["node_modules"]
 }

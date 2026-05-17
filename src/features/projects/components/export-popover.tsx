@@ -42,7 +42,7 @@ const formSchema = z.object({
     .max(100, "Repository name is too long")
     .regex(
       /^[a-zA-Z0-9._-]+$/,
-      "Only alphanumeric characters, hyphens, underscores, and dots are allowed"
+      "Only alphanumeric characters, hyphens, underscores, and dots are allowed",
     ),
   visibility: z.enum(["public", "private"]),
   description: z.string().max(350, "Description is too long"),
@@ -71,15 +71,14 @@ export const ExportPopover = ({ projectId }: ExportPopoverProps) => {
     },
     onSubmit: async ({ value }) => {
       try {
-        await ky
-          .post("/api/github/export", {
-            json: {
-              projectId,
-              repoName: value.repoName,
-              visibility: value.visibility,
-              description: value.description || undefined,
-            },
-          })
+        await ky.post("/api/github/export", {
+          json: {
+            projectId,
+            repoName: value.repoName,
+            visibility: value.visibility,
+            description: value.description || undefined,
+          },
+        });
 
         toast.success("Export started...");
       } catch (error) {
@@ -155,7 +154,11 @@ export const ExportPopover = ({ projectId }: ExportPopoverProps) => {
           </p>
           <div className="flex flex-col w-full gap-2">
             <Button size="sm" className="w-full" asChild>
-              <Link href={exportRepoUrl} target="_blank" rel="noopener noreferrer">
+              <Link
+                href={exportRepoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <ExternalLinkIcon className="size-4 mr-1" />
                 View on GitHub
               </Link>
@@ -170,7 +173,7 @@ export const ExportPopover = ({ projectId }: ExportPopoverProps) => {
             </Button>
           </div>
         </div>
-      )
+      );
     }
 
     if (exportStatus === "failed") {
@@ -214,9 +217,7 @@ export const ExportPopover = ({ projectId }: ExportPopoverProps) => {
 
               return (
                 <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name}>
-                    Repository Name
-                  </FieldLabel>
+                  <FieldLabel htmlFor={field.name}>Repository Name</FieldLabel>
                   <Input
                     id={field.name}
                     name={field.name}
@@ -236,9 +237,7 @@ export const ExportPopover = ({ projectId }: ExportPopoverProps) => {
             {(field) => {
               return (
                 <Field>
-                  <FieldLabel htmlFor={field.name}>
-                    Visibility
-                  </FieldLabel>
+                  <FieldLabel htmlFor={field.name}>Visibility</FieldLabel>
                   <Select
                     value={field.state.value}
                     onValueChange={(value: "public" | "private") =>
@@ -253,7 +252,6 @@ export const ExportPopover = ({ projectId }: ExportPopoverProps) => {
                       <SelectItem value="public">Public</SelectItem>
                     </SelectContent>
                   </Select>
-
                 </Field>
               );
             }}
@@ -266,9 +264,7 @@ export const ExportPopover = ({ projectId }: ExportPopoverProps) => {
 
               return (
                 <Field data-invalid={isInvalid}>
-                  <FieldLabel htmlFor={field.name}>
-                    Description
-                  </FieldLabel>
+                  <FieldLabel htmlFor={field.name}>Description</FieldLabel>
                   <Textarea
                     id={field.name}
                     name={field.name}
@@ -301,7 +297,7 @@ export const ExportPopover = ({ projectId }: ExportPopoverProps) => {
           </form.Subscribe>
         </div>
       </form>
-    )
+    );
   };
 
   const getStatusIcon = () => {

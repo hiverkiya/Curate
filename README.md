@@ -20,31 +20,31 @@ Curate demonstrates how **real-time databases, intelligent coding agents, browse
 
 # 🧠 Core Architecture
 
-| Technology | Purpose |
-|------------|---------|
-| ⚡ **Next.js 16 + TypeScript** | Frontend framework and application architecture |
-| 🔄 **Convex** | Real-time database, backend logic, and API layer |
-| 🔐 **Clerk** | Authentication, session management, and GitHub OAuth |
-| ✏️ **CodeMirror 6** | Extensible browser-based code editor |
-| 🧩 **Zustand** | Lightweight editor state management |
-| 🤖 **Inngest + AgentKit** | AI orchestration and background workflows |
-| 🌐 **Firecrawl** | Live web content ingestion for AI context |
-| 📦 **WebContainers** | In-browser Node.js runtime for project previews |
-| 🛰 **Sentry** | Error monitoring and AI telemetry |
-| 💬 **Streamdown** | Streaming markdown rendering for AI responses |
-| 🐰 **CodeRabbit** | AI-powered GitHub PR review workflow |
-| 🎞 **Framer Motion** | UI animation and transitions |
+| Technology                     | Purpose                                              |
+| ------------------------------ | ---------------------------------------------------- |
+| ⚡ **Next.js 16 + TypeScript** | Frontend framework and application architecture      |
+| 🔄 **Convex**                  | Real-time database, backend logic, and API layer     |
+| 🔐 **Clerk**                   | Authentication, session management, and GitHub OAuth |
+| ✏️ **CodeMirror 6**            | Extensible browser-based code editor                 |
+| 🧩 **Zustand**                 | Lightweight editor state management                  |
+| 🤖 **Inngest + AgentKit**      | AI orchestration and background workflows            |
+| 🌐 **Firecrawl**               | Live web content ingestion for AI context            |
+| 📦 **WebContainers**           | In-browser Node.js runtime for project previews      |
+| 🛰 **Sentry**                  | Error monitoring and AI telemetry                    |
+| 💬 **Streamdown**              | Streaming markdown rendering for AI responses        |
+| 🐰 **CodeRabbit**              | AI-powered GitHub PR review workflow                 |
+| 🎞 **Framer Motion**           | UI animation and transitions                         |
 
 ---
 
 # 💰 AI Cost Architecture
 
-| Route | Model | Est. Cost / Call |
-|-------|-------|------------------|
-| 🔤 Title generation | Claude Haiku | ~$0.00006 |
-| 💡 Inline suggestions | Claude Haiku | ~$0.00015 |
-| ✏️ Quick edit | Claude Haiku | ~$0.0015 |
-| 🤖 Coding agent | Claude Sonnet | ~$0.05 – $0.20 |
+| Route                 | Model         | Est. Cost / Call |
+| --------------------- | ------------- | ---------------- |
+| 🔤 Title generation   | Claude Haiku  | ~$0.00006        |
+| 💡 Inline suggestions | Claude Haiku  | ~$0.00015        |
+| ✏️ Quick edit         | Claude Haiku  | ~$0.0015         |
+| 🤖 Coding agent       | Claude Sonnet | ~$0.05 – $0.20   |
 
 ### Cost Optimization Strategy
 
@@ -360,12 +360,12 @@ Getting the system prompt right was one of the highest-impact changes in the pro
 
 Token costs were optimized across all AI routes after profiling actual usage:
 
-| Route | Optimization Applied | Estimated Saving |
-|-------|---------------------|-----------------|
-| Suggestions | Removed full file, trimmed to 10 prev + 5 next lines, `maxTokens: 150` | ~70% |
-| Quick edit | Trimmed `fullCode` to 100 lines around selection, capped docs at 5000 chars, `maxTokens: 2000` | ~60% |
-| Coding agent | Reduced context history from 10 to 5 messages, `max_tokens: 8000`, `maxIter: 5` | ~45% |
-| Title generation | `max_tokens: 50`, `temperature: 0` | ~80% |
+| Route            | Optimization Applied                                                                           | Estimated Saving |
+| ---------------- | ---------------------------------------------------------------------------------------------- | ---------------- |
+| Suggestions      | Removed full file, trimmed to 10 prev + 5 next lines, `maxTokens: 150`                         | ~70%             |
+| Quick edit       | Trimmed `fullCode` to 100 lines around selection, capped docs at 5000 chars, `maxTokens: 2000` | ~60%             |
+| Coding agent     | Reduced context history from 10 to 5 messages, `max_tokens: 8000`, `maxIter: 5`                | ~45%             |
+| Title generation | `max_tokens: 50`, `temperature: 0`                                                             | ~80%             |
 
 The core principle: **send only what the model needs, cap what it can return.** Most token waste comes from sending full file contents when only nearby context is relevant.
 
