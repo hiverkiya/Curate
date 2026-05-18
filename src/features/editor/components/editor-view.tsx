@@ -39,7 +39,7 @@ export const EditorView = ({ projectId }: { projectId: Id<"projects"> }) => {
       symbol: codeSymbols[Math.floor(Math.random() * codeSymbols.length)],
     })),
   );
-
+  //Cleaning up pending debounced updates on unmount or file change
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {

@@ -7,10 +7,8 @@ import {
   WidgetType,
   keymap,
 } from "@codemirror/view";
-import { StateEffect, StateField, Transaction } from "@codemirror/state";
-import { State } from "@inngest/agent-kit";
-import { effect } from "zod/v3";
-import { create } from "domain";
+import { StateEffect, StateField } from "@codemirror/state";
+
 import { fetcher } from "./fetcher";
 const setSuggestionEffect = StateEffect.define<string | null>();
 //StateEffect: A way to send "messages" to update state
@@ -45,20 +43,22 @@ class SuggestionWidget extends WidgetType {
     const span = document.createElement("span");
     span.textContent = this.text;
     span.style.opacity = "0.4"; //Ghost text appearance
+    span.style.fontStyle = "italic";
+    span.style.color = "hsl(var(--muted-foreground))";
     span.style.pointerEvents = "none"; //Don't interfere with clicks
     return span;
   }
 }
 let debounceTimer: number | null = null;
 let isWaitingForSuggestion = false;
-const DEBOUNCE_DELAY = 300;
+const DEBOUNCE_DELAY = 400;
 let currentAbortController: AbortController | null = null;
 
-const generateFakeSuggestion = (textBeforeCursor: string): string | null => {
-  const trimmed = textBeforeCursor.trimEnd();
-  if (trimmed.endsWith("const")) return "myVariable = ";
-  return null;
-};
+// const generateFakeSuggestion = (textBeforeCursor: string): string | null => {
+//   const trimmed = textBeforeCursor.trimEnd();
+//   if (trimmed.endsWith("const")) return "myVariable = ";
+//   return null;
+// };
 
 const generatePayload = (view: EditorView, fileName: string) => {
   const code = view.state.doc.toString();
@@ -66,6 +66,9 @@ const generatePayload = (view: EditorView, fileName: string) => {
   const cursorPosition = view.state.selection.main.head;
   const currentLine = view.state.doc.lineAt(cursorPosition);
   const cursorInLine = cursorPosition - currentLine.from;
+  if (currentLine.text.slice(0, cursorInLine).trim().length === 0) {
+    return null;
+  }
   const previousLines: string[] = [];
   const previousLinesToFetch = Math.min(5, currentLine.number - 1);
   for (let i = previousLinesToFetch; i >= 1; i--) {
@@ -92,11 +95,10 @@ const generatePayload = (view: EditorView, fileName: string) => {
 const createDebouncePlugin = (fileName: string) => {
   return ViewPlugin.fromClass(
     class {
-      constructor(view: EditorView) {
-        this.triggerSuggestion(view);
-      }
+      constructor(_view: EditorView) {}
       update(update: ViewUpdate) {
-        if (update.docChanged || update.selectionSet) {
+        if (update.docChanged) {
+          // || update.selectionSet Cursor movement should not trigger AI network requests. Only actual document edits should.
           this.triggerSuggestion(update.view);
         }
       }
