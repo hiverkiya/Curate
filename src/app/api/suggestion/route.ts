@@ -1,3 +1,4 @@
+// Use this for Claude
 import { generateText, Output } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -74,9 +75,12 @@ export async function POST(request: Request) {
       .replace("{lineNumber}", lineNumber.toString());
 
     const { output } = await generateText({
-      model: anthropic("claude-3-haiku-20240307"),
+      model: anthropic("claude-haiku-4-5-20251001"), //claude-haiku-4-5-20251001
       output: Output.object({ schema: suggestionSchema }),
       prompt,
+      maxRetries: 0,
+      maxOutputTokens: 128,
+      temperature: 0,
     });
 
     return NextResponse.json({ suggestion: output.suggestion });
@@ -88,3 +92,105 @@ export async function POST(request: Request) {
     );
   }
 }
+// import { generateText, Output } from "ai";
+// import { NextResponse } from "next/server";
+// import { z } from "zod";
+// import { google } from "@ai-sdk/google";
+// import { auth } from "@clerk/nextjs/server";
+
+// const suggestionSchema = z.object({
+//   suggestion: z
+//     .string()
+//     .describe(
+//       "The exact code to insert at the cursor, or empty string if no completion is needed",
+//     ),
+// });
+
+// const SUGGESTION_PROMPT = `You are an inline code completion engine.
+
+// Return ONLY the exact code that should be inserted at the cursor.
+
+// STRICT RULES:
+// - Return code only
+// - No markdown
+// - No explanations
+// - No comments unless required by the code
+// - Never repeat code already after the cursor
+// - If no completion is appropriate, return an empty string
+// - Continue naturally from the cursor position
+
+// Context:
+
+// File: {fileName}
+
+// Previous lines:
+// {previousLines}
+
+// Current line ({lineNumber}):
+// {currentLine}
+
+// Before cursor:
+// {textBeforeCursor}
+
+// After cursor:
+// {textAfterCursor}
+
+// Next lines:
+// {nextLines}
+
+// Full code:
+// {code}`;
+
+// export async function POST(request: Request) {
+//   try {
+//     const { userId } = await auth();
+
+//     if (!userId) {
+//       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+//     }
+
+//     const {
+//       fileName,
+//       code,
+//       currentLine,
+//       previousLines,
+//       textBeforeCursor,
+//       textAfterCursor,
+//       nextLines,
+//       lineNumber,
+//     } = await request.json();
+
+//     if (!code) {
+//       return NextResponse.json({ error: "Code is required" }, { status: 400 });
+//     }
+
+//     const prompt = SUGGESTION_PROMPT.replace("{fileName}", fileName)
+//       .replace("{code}", code)
+//       .replace("{currentLine}", currentLine)
+//       .replace("{previousLines}", previousLines || "")
+//       .replace("{textBeforeCursor}", textBeforeCursor)
+//       .replace("{textAfterCursor}", textAfterCursor)
+//       .replace("{nextLines}", nextLines || "")
+//       .replace("{lineNumber}", lineNumber.toString());
+
+//     const { output } = await generateText({
+//       model: google("gemini-2.5-flash"),
+//       output: Output.object({
+//         schema: suggestionSchema,
+//       }),
+//       prompt,
+//       temperature: 0,
+//     });
+
+//     return NextResponse.json({
+//       suggestion: output.suggestion,
+//     });
+//   } catch (error) {
+//     console.error("Suggestion error:", error);
+
+//     return NextResponse.json(
+//       { error: "Failed to generate suggestion" },
+//       { status: 500 },
+//     );
+//   }
+// }
