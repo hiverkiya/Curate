@@ -2,7 +2,7 @@
 
 import { Poppins } from "next/font/google";
 import { SquareTerminalIcon } from "lucide-react";
-import { SignInButton } from "@clerk/nextjs";
+import { SignInButton, SignOutButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -242,7 +242,7 @@ export const UnauthenticatedView = () => {
             transition={{ delay: 0.7 }}
             className="w-full"
           >
-            <SignInButton>
+            <SignInButton mode="modal">
               <Button
                 variant="outline"
                 size="default"
@@ -251,6 +251,7 @@ export const UnauthenticatedView = () => {
                 {">"} Sign In
               </Button>
             </SignInButton>
+          
           </motion.div>
         </motion.div>
         <div className="fixed bottom-8 left-1/2 z-50 -translate-x-1/2">
