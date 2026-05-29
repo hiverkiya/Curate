@@ -19,12 +19,12 @@ const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
-  const isPublicRoute = ["/learnings", "/test"].some((prefix) =>
-    pathname === prefix || pathname?.startsWith(`${prefix}/`),
+  const isPublicRoute = ["/learnings", "/test"].some(
+    (prefix) => pathname === prefix || pathname?.startsWith(`${prefix}/`),
   );
 
   return (
-    <ClerkProvider appearance={{ theme: dark }} >
+    <ClerkProvider appearance={{ theme: dark }}>
       <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
         <ThemeProvider
           attribute="class"

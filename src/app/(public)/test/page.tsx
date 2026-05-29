@@ -100,8 +100,7 @@ export default function Page() {
             variant="success"
             onClick={() =>
               toast.success("Deployment successful", {
-                description:
-                  "Your application has been deployed successfully.",
+                description: "Your application has been deployed successfully.",
               })
             }
           >
@@ -136,8 +135,7 @@ export default function Page() {
             variant="soft"
             onClick={() =>
               toast.info("AI suggestion available", {
-                description:
-                  "Curate generated a code improvement suggestion.",
+                description: "Curate generated a code improvement suggestion.",
               })
             }
           >
