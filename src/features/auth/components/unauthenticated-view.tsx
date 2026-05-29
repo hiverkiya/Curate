@@ -285,7 +285,7 @@ export const UnauthenticatedView = () => {
                 className="w-full border-blue-500/25 hover:text-green-400/60 uppercase font-mono tracking-widest hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300"
                 aria-label="Sign in to Curate"
               >
-                {">"} Sign In
+                {">"} Continue
               </Button>
             </SignInButton>
           </motion.div>

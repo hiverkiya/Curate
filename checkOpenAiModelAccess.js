@@ -6,9 +6,7 @@ const API_KEY = process.env.OPENAI_API_KEY || process.argv[2];
 
 if (!API_KEY) {
   console.error("❌ No API key found.");
-  console.error(
-    "   Set OPENAI_API_KEY or pass it as the first argument.\n",
-  );
+  console.error("   Set OPENAI_API_KEY or pass it as the first argument.\n");
   process.exit(1);
 }
 
@@ -39,9 +37,7 @@ async function main() {
 
   const response = await client.models.list();
 
-  const models = response.data.sort((a, b) =>
-    a.id.localeCompare(b.id),
-  );
+  const models = response.data.sort((a, b) => a.id.localeCompare(b.id));
 
   const W = {
     id: 45,
@@ -49,10 +45,7 @@ async function main() {
     category: 15,
   };
 
-  const header =
-    col("Model ID", W.id) +
-    col("Created", W.created) +
-    "Category";
+  const header = col("Model ID", W.id) + col("Created", W.created) + "Category";
 
   const divider = "─".repeat(header.length);
 
@@ -66,9 +59,7 @@ async function main() {
       : "—";
 
     console.log(
-      col(model.id, W.id) +
-        col(created, W.created) +
-        classifyModel(model.id),
+      col(model.id, W.id) + col(created, W.created) + classifyModel(model.id),
     );
   }
 
