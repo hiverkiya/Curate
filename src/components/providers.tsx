@@ -24,7 +24,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
   );
 
   return (
-    <ClerkProvider appearance={{ theme: dark }} afterSignOutUrl="/">
+    <ClerkProvider appearance={{ theme: dark }} >
       <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
         <ThemeProvider
           attribute="class"
